@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="53dp"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="28dp"
+        android:onClick="openMenu"
+        android:text="@string/menu" />
+
+    <Button
+        android:id="@+id/placeholder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/menu"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="34dp"
+        android:text="placeholder" />
+
+    <Button
+        android:id="@+id/gaeilge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/english"
+        android:layout_alignBottom="@+id/english"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:text="@string/Gaeilge" />
+
+    <Button
+        android:id="@+id/english"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/menu"
+        android:layout_alignBottom="@+id/menu"
+        android:layout_toLeftOf="@+id/gaeilge"
+        android:text="@string/English" />
+
+</RelativeLayout>
