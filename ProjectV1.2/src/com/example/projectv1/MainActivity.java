@@ -5,13 +5,18 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity{
 
@@ -42,6 +47,27 @@ public class MainActivity extends Activity{
 			mainLayout.setBackgroundColor(Color.BLUE);
 		}
 		
+		// Ruler Listener
+		ImageView rulerView = (ImageView)findViewById(R.id.ruler);
+		
+		OnTouchListener rulerListener = new OnTouchListener()
+		{
+			@Override
+			public boolean onTouch(View v, MotionEvent event)
+			{
+				float positionX = event.getX();
+				if(event.getAction() == MotionEvent.ACTION_DOWN) {
+					float rulerPosition = (float) (((positionX - 15) / 770) * 10.5);
+					Toast.makeText(getApplicationContext(),
+							"You clicked at: " + rulerPosition, Toast.LENGTH_SHORT).show();
+					
+					return true;
+				}
+				return false;
+			}
+		};
+		
+		rulerView.setOnTouchListener(rulerListener);
 		
 	}
 
@@ -58,5 +84,18 @@ public class MainActivity extends Activity{
 	{
 		Intent openMenu = new Intent("com.project.MENU");
 		startActivity(openMenu);
+	}
+	
+	public static String eventActionToString(int eventAction) {
+	    switch (eventAction) {
+	        case MotionEvent.ACTION_CANCEL: return "Cancel";
+	        case MotionEvent.ACTION_DOWN: return "Down";
+	        case MotionEvent.ACTION_MOVE: return "Move";
+	        case MotionEvent.ACTION_OUTSIDE: return "Outside";
+	        case MotionEvent.ACTION_UP: return "Up";
+	        case MotionEvent.ACTION_POINTER_DOWN: return "Pointer Down";
+	        case MotionEvent.ACTION_POINTER_UP: return "Pointer Up";
+	    }
+	    return "";
 	}
 }

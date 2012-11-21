@@ -27,15 +27,6 @@
         android:text="@string/menu" />
 
     <Button
-        android:id="@+id/placeholder"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/menu"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="34dp"
-        android:text="placeholder" />
-
-    <Button
         android:id="@+id/gaeilge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,5 +44,14 @@
         android:layout_alignBottom="@+id/menu"
         android:layout_toLeftOf="@+id/gaeilge"
         android:text="@string/English" />
+
+    <ImageView
+        android:id="@+id/ruler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/menu"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/ruler" />
 
 </RelativeLayout>
