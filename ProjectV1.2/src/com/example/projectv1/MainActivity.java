@@ -1,10 +1,15 @@
 package com.example.projectv1;
 
+import com.example.projectv1.timeline.TimelineImageView;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -28,7 +33,7 @@ public class MainActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.myLayout);
+//		RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.myLayout);
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
 //		content.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -40,26 +45,47 @@ public class MainActivity extends Activity{
 					"Booking time (from - to) \n" +
 					"Current date and time \n" +
 					"Room number \n");
-			mainLayout.setBackgroundColor(0xCCCC0000);
+			// mainLayout.setBackgroundColor(0xCCCC0000);
 		} else
 		{
 			content.setText("This room is currently free");
-			mainLayout.setBackgroundColor(Color.BLUE);
+			// mainLayout.setBackgroundColor(Color.BLUE);
 		}
 		
-		// Ruler Listener
-		ImageView rulerView = (ImageView)findViewById(R.id.ruler);
 		
-		OnTouchListener rulerListener = new OnTouchListener()
+		// Timeline Listener
+		ImageView timelineView = (ImageView)findViewById(R.id.timeline);
+		timelineView.setBackgroundColor(Color.GREEN);
+		
+		OnTouchListener timelineListener = new OnTouchListener()
 		{
 			@Override
 			public boolean onTouch(View v, MotionEvent event)
 			{
 				float positionX = event.getX();
 				if(event.getAction() == MotionEvent.ACTION_DOWN) {
-					float rulerPosition = (float) (((positionX - 15) / 770) * 10.5);
+					// TODO These are just test values
+					int[][] time_array = new int[][] {{50, 150},{200, 300},{600,700}};
+					
+					boolean occupied = false;
+					for (int i = 0; i<3; i++) {
+						if (time_array[i][0] < positionX && time_array[i][1] > positionX)
+						{
+							occupied = true;
+						}
+					}
+					
+					String message;
+					if (occupied) {
+						message = "The room is occupied";
+					}
+					else {
+						message = "The room is available";
+					}
+					
+					
 					Toast.makeText(getApplicationContext(),
-							"You clicked at: " + rulerPosition, Toast.LENGTH_SHORT).show();
+							"You clicked at: " + positionX + "\n" + message, Toast.LENGTH_SHORT).show();
 					
 					return true;
 				}
@@ -67,7 +93,7 @@ public class MainActivity extends Activity{
 			}
 		};
 		
-		rulerView.setOnTouchListener(rulerListener);
+		timelineView.setOnTouchListener(timelineListener);
 		
 	}
 

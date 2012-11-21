@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
+    <com.example.projectv1.timeline.TimelineImageView
+     android:id="@+id/timeline"
+     android:layout_width="fill_parent"
+     android:layout_height="100dp" />
+    
+    
     <TextView
         android:id="@+id/content"
         android:layout_width="wrap_content"
@@ -44,14 +50,5 @@
         android:layout_alignBottom="@+id/menu"
         android:layout_toLeftOf="@+id/gaeilge"
         android:text="@string/English" />
-
-    <ImageView
-        android:id="@+id/ruler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/menu"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="30dp"
-        android:src="@drawable/ruler" />
 
 </RelativeLayout>
