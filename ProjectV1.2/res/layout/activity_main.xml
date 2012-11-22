@@ -30,7 +30,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="24dp"
         android:layout_marginLeft="28dp"
-        android:onClick="openMenu"
+        android:onClick="buttonClick"
         android:text="@string/menu" />
 
     <Button

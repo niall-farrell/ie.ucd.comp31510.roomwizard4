@@ -1,5 +1,8 @@
 package com.example.projectv1;
 // this is just a test comment  test again
+import java.util.Calendar;
+import java.util.Locale;
+
 import com.example.projectv1.timeline.TimelineImageView;
 
 import android.net.Uri;
@@ -7,6 +10,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -26,7 +30,8 @@ import android.widget.Toast;
 public class MainActivity extends Activity{
 
 	Boolean occupied = true;
-	
+	Calendar c = Calendar.getInstance();
+	String language;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +43,24 @@ public class MainActivity extends Activity{
 		content = (TextView) findViewById(R.id.content);
 //		content.setGravity(Gravity.CENTER_HORIZONTAL);
 		
+		// get system date and time
+		//
+		// this probably isn't a very good system. needs more work
+		//
+		int seconds = c.get(Calendar.SECOND);
+		int mins = c.get(Calendar.MINUTE);
+		int hours = c.get(Calendar.HOUR_OF_DAY);
+		int date = c.get(Calendar.DATE);
+		int month = c.get(Calendar.MONTH);
+		int year = c.get(Calendar.YEAR);
+		
 		if (occupied)
 		{
 			content.setText("Organizer's name \n" +
 					"Event name \n" +
 					"Booking time (from - to) \n" +
-					"Current date and time \n" +
+					"Current date: " + date + "/" + month + "/" + year + ". Time: " + 
+					hours+":"+mins+":"+seconds + " \n" +
 					"Room number \n");
 			// mainLayout.setBackgroundColor(0xCCCC0000);
 		} else
@@ -105,11 +122,34 @@ public class MainActivity extends Activity{
 	}
 
 	
-	// is called from xml when button is clicked
-	public void openMenu(View v)
+	// is called from XML when button is clicked
+	public void buttonClick(View v)
 	{
-		Intent openMenu = new Intent("com.project.MENU");
-		startActivity(openMenu);
+		switch(v.getId())
+		{
+		case R.id.menu:
+			Intent openMenu = new Intent("com.project.MENU");
+			startActivity(openMenu);
+			break;
+			
+		case R.id.english:
+			
+			break;
+			
+		case R.id.gaeilge:
+			/*
+			language="ga";
+			Locale loc2 = new Locale(language);
+			Locale.setDefault(loc2);
+			Configuration config = new Configuration();
+			config.locale =loc2;
+			getBaseContext().getResources().updateConfiguration(config,
+					getBaseContext().getResources().getDisplayMetrics());
+			this.setContentView(R.layout.activity_main);
+			*/
+			break;
+		}
+
 	}
 	
 	public static String eventActionToString(int eventAction) {
