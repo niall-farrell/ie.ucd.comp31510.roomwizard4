@@ -1,5 +1,5 @@
 package com.example.projectv1;
-// this is just a test comment khui
+// this is just a test comment 
 import com.example.projectv1.timeline.TimelineImageView;
 
 import android.net.Uri;
