@@ -3,7 +3,8 @@
     android:id="@+id/myLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity" 
+    android:keepScreenOn="true">
 
     <com.example.projectv1.timeline.TimelineImageView
      android:id="@+id/timeline"
