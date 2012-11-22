@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".MainActivity" >
 
     <com.example.projectv1.timeline.TimelineImageView
@@ -50,5 +50,15 @@
         android:layout_alignBottom="@+id/menu"
         android:layout_toLeftOf="@+id/gaeilge"
         android:text="@string/English" />
+
+    <ImageButton
+        android:id="@+id/button1"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/content"
+        android:layout_alignBottom="@+id/content"
+        android:layout_alignLeft="@+id/menu"
+        android:background="@drawable/qr_sample"
+        />
 
 </RelativeLayout>

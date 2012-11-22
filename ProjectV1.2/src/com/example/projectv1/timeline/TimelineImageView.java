@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
+//Nail's comment
 public class TimelineImageView extends ImageView{
 	Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
 
