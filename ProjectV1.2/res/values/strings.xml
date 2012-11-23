@@ -16,5 +16,6 @@
     <string name="English">English</string>
     <string name="Gaeilge">Gaeilge</string>
     <string name="update">Update</string>
-
+    <string name="Back">Back</string>
+    
 </resources>
