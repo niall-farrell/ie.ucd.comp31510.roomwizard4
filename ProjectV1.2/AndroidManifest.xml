@@ -44,6 +44,7 @@
         </activity>
         <activity
             android:name="com.example.projectv1.Menu"
+            android:exported="false"
             android:label="@string/menu"
             android:screenOrientation="landscape" >
             <intent-filter>
@@ -54,6 +55,7 @@
         </activity>
         <activity
             android:name="com.example.projectv1.Add_booking"
+            android:exported="false"
             android:label="@string/add_booking"
             android:screenOrientation="landscape" >
             <intent-filter>
@@ -64,6 +66,7 @@
         </activity>
         <activity
             android:name="com.example.projectv1.PasswordPrompt"
+            android:exported="false"
             android:label="@string/enter_pass" >
             <intent-filter>
                 <action android:name="android.intent.action.PASS" />
