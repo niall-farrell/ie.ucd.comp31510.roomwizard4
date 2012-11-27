@@ -60,13 +60,7 @@ public class MainActivity extends Activity{
 		content = (TextView) findViewById(R.id.content);
 //		content.setGravity(Gravity.CENTER_HORIZONTAL);
 		
-		// get system date and time
-		//
-		// this probably isn't a very good system. needs more work
-		//
-		int seconds = c.get(Calendar.SECOND);
-		int mins = c.get(Calendar.MINUTE);
-		int hours = c.get(Calendar.HOUR_OF_DAY);
+
 		int date = c.get(Calendar.DATE);
 		int month = c.get(Calendar.MONTH);
 		int year = c.get(Calendar.YEAR);
@@ -76,8 +70,7 @@ public class MainActivity extends Activity{
 			content.setText("Organizer's name \n" +
 					"Event name \n" +
 					"Booking time (from - to) \n" +
-					"Current date: " + date + "/" + month + "/" + year + ". Time: " + 
-					hours+":"+mins+":"+seconds + " \n" +
+					"Current date: " + date + "/" + month + "/" + year + ".\n" +
 					"Room number \n");
 			// mainLayout.setBackgroundColor(0xCCCC0000);
 		} else
