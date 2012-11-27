@@ -5,7 +5,9 @@ import android.util.Log;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +18,9 @@ public class Preferences extends PreferenceActivity {
     public void onCreate(Bundle savedInstanceState) {       
         super.onCreate(savedInstanceState);       
         addPreferencesFromResource(R.xml.preferences);       
-
+        
+        // must call this method to check password before  displaying activity
+        checkPassword();
 
  //       Preference button = (Preference)findPreference("backButtons");
         Preference button = (Preference)getPreferenceManager().findPreference("backButtons");      
@@ -53,7 +57,26 @@ public boolean onOptionsItemSelected(MenuItem item) {
         }
         return false;
     }
-     
+    
+    public void checkPassword()
+    { 	
+		Bundle submitted = getIntent().getExtras();
+		long savedPass=0, submittedPass=-1;
+		
+		if (submitted !=null){			
+			submittedPass = submitted.getLong("submitted_pass");								
+		}
+		
+		SharedPreferences prefs = this.getSharedPreferences("com.example.projectv1", Context.MODE_PRIVATE);
+		
+	//	prefs.edit().putLong("savedPass", "default".hashCode()).commit();						
+		savedPass = prefs.getLong("savedPass", "default".hashCode());
+		
+		if (savedPass != submittedPass){			
+			Intent promptPass = new Intent("android.intent.action.PASS");
+			startActivity(promptPass);				
+		} 
+    } 
 }
 /*
 public class Preferences extends Activity {
