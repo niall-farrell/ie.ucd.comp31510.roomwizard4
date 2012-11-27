@@ -1,9 +1,15 @@
 package com.example.projectv1;
 // this is just a test comment  test again
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.Locale;
 
 import com.example.projectv1.timeline.TimelineImageView;
+import com.example.projectv1.ClassBooking;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,8 +33,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity{
+import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.Property;
+import net.fortuna.ical4j.model.TimeZoneRegistry;
+import net.fortuna.ical4j.model.TimeZoneRegistryFactory;
+import net.fortuna.ical4j.util.Calendars;
+import net.fortuna.ical4j.util.CompatibilityHints;
 
+public class MainActivity extends Activity{
+	// Create our linkedlist of class bookings
+	ArrayList<ClassBooking> cb = new ArrayList<ClassBooking>();
+	
 	Boolean occupied = true;
 	Calendar c = Calendar.getInstance();
 	String language;
@@ -164,4 +181,69 @@ public class MainActivity extends Activity{
 	    }
 	    return "";
 	}
+	
+	//Calendar calendar = Calendars.load(new URL("http://ical4j.cvs.sourceforge.net/viewvc/*checkout*/ical4j/iCal4j/etc/samples/valid/Australian32Holidays.ics"));
+		public  java.util.ArrayList<ClassBooking> getClassBooking() throws IOException, ParserException {
+			String uid = "";
+			String summary = "";
+			String st = "";
+			String et = "";
+			String url = "";
+			URL add = null; 
+			try {
+				add = new URL("http://www.chartspms.com/android/calendar.ics");
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			net.fortuna.ical4j.model.Calendar calendar = new net.fortuna.ical4j.model.Calendar();
+			CalendarBuilder builder = new CalendarBuilder();
+			//CalendarBuilder builder = new CalendarBuilder();
+	    	
+				calendar = builder.build(add.openStream());
+		
+	    	if(calendar!=null)
+	    	{
+
+			// Iterating over a Calendar
+			for (Iterator i = calendar.getComponents().iterator(); i.hasNext();) {
+				Component component = (Component) i.next();
+
+				System.out.println("Component [" + component.getName() + "]");
+
+				for (Iterator j = component.getProperties().iterator(); j.hasNext();) {
+					Property property = (Property) j.next();
+
+					if (property.getName().equals("UID")) {
+						uid = property.getValue();
+					}
+					if (property.getName().equals("SUMMARY")) {
+						summary = property.getValue();
+					}
+					if (property.getName().equals("DTSTART")) {
+						st = property.getValue();
+					}
+					if (property.getName().equals("DTEND")) {
+						et = property.getValue();
+					}
+					if (property.getName().equals("URL")) {
+						url = property.getValue();
+					}
+				}
+				cb.add(new ClassBooking(uid, summary, st, et, url));
+			}
+	    	}
+	    	for (ClassBooking booking : cb) {
+				/**String message = "UID:" + booking.getUID() + "ST: "
+						+ booking.getStartTime() + "ET: " + booking.getEndTime();
+				Log.i("pab", message);**/
+
+				System.out.println("UID:" + booking.getUID() + "ST: "
+						+ booking.getStartTime() + "ET: " + booking.getEndTime());
+
+			}
+
+			
+			return cb;
+		}
 }
