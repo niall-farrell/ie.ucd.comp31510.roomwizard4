@@ -56,18 +56,22 @@ public class MainActivity extends Activity{
 		// initialise pref
 		pref = getPreferences(MODE_PRIVATE);
 		
-		// update restart counter (currently based on creation of main activity)
+		// create restart preference editor and update
         SharedPreferences.Editor editRestart = pref.edit();
         editRestart.putInt("nRestart", pref.getInt("nRestart", 0) + 1);
 
-		
+        // create network fail preference editor in the event of failure
+        SharedPreferences.Editor editNetwork = pref.edit();
+        
 		try {
 			cb = getClassBooking();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// increment network preference failure
+	        editNetwork.putInt("nNetwork", pref.getInt("nNetwork", 0) + 1); editNetwork.commit();
 			e.printStackTrace();
 		} catch (ParserException e) {
-			// TODO Auto-generated catch block
+			// increment network preference failure
+			editNetwork.putInt("nNetwork", pref.getInt("nNetwork", 0) + 1); editNetwork.commit();
 			e.printStackTrace();
 		}
 		
@@ -295,7 +299,7 @@ public class MainActivity extends Activity{
 		{
 	        // Create HttpClient and header
 	        HttpClient httpclient = new DefaultHttpClient();
-	        HttpPost httppost = new HttpPost("http://localhost/app/processStats.php"); // ## update to live server
+	        HttpPost httppost = new HttpPost("http://www.chartspms.com/android/processStats.php"); // ## update to live server
 
 	        try {
 	            // Add your data
