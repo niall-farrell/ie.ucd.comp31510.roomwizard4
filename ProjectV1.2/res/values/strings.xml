@@ -17,5 +17,10 @@
     <string name="Gaeilge">Gaeilge</string>
     <string name="update">Update</string>
     <string name="Back">Back</string>
-    
+    <string name="enter_pass">Enter password</string>
+    <string name="title_activity_password_prompt">PasswordPrompt</string>
+    <string name="submit">Submit</string>
+    <string name="main_pass_prompt">Please enter your password. (The default value is \'default\'.)</string>
+    <string name="time">Time</string>
+
 </resources>

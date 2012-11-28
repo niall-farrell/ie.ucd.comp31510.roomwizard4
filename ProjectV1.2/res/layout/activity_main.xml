@@ -5,11 +5,6 @@
     android:layout_height="wrap_content"
     tools:context=".MainActivity" 
     android:keepScreenOn="true">
-
-    <com.example.projectv1.timeline.TimelineImageView
-     android:id="@+id/timeline"
-     android:layout_width="fill_parent"
-     android:layout_height="100dp" />
     
     
     <TextView
@@ -21,6 +16,14 @@
         android:layout_marginLeft="49dp"
         android:layout_marginTop="53dp"
         android:textSize="20sp" />
+    
+        <DigitalClock
+        android:id="@+id/digitalClock1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/content"
+        android:layout_marginTop="28dp"
+        android:text="@string/time" />
 
     <Button
         android:id="@+id/menu"
@@ -52,14 +55,13 @@
         android:layout_toLeftOf="@+id/gaeilge"
         android:text="@string/English" />
 
-    <ImageButton
-        android:id="@+id/button1"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_alignBaseline="@+id/content"
-        android:layout_alignBottom="@+id/content"
-        android:layout_alignLeft="@+id/menu"
-        android:background="@drawable/qr_sample"
-        />
+
+    <com.example.projectv1.timeline.TimelineImageView
+        android:id="@+id/timeline"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_above="@+id/menu"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="42dp" />
 
 </RelativeLayout>

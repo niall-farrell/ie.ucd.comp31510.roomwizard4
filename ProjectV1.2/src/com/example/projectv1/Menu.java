@@ -36,8 +36,8 @@ public class Menu extends Activity {
 			
 		case R.id.preferences:
 			
-			Intent openPrefs = new Intent("com.project.PREFERENCES");
-			startActivity(openPrefs);
+			Intent promptPass = new Intent("android.intent.action.PASS");
+			startActivity(promptPass);
 			
 			break;
 		}
