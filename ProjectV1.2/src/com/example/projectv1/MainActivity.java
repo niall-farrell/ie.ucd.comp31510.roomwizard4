@@ -277,7 +277,7 @@ public class MainActivity extends Activity{
 	        cal.set(Calendar.MILLISECOND, 0);
 			
 			// initialise intent to start boot app service
-	        Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
+	        Intent myIntent = new Intent(getBaseContext(), MyScheduledReceiver.class);
 
 	        PendingIntent pendingIntent
 	         = PendingIntent.getBroadcast(getBaseContext(),
