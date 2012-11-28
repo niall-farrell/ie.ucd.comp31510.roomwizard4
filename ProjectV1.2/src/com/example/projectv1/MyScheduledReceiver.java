@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+// called by AlarmManager object and starts main activity (start of day)
 public class MyScheduledReceiver extends BroadcastReceiver {
 
 	@Override

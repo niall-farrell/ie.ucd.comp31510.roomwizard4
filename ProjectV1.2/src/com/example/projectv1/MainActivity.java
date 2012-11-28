@@ -25,10 +25,12 @@ import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -53,8 +55,14 @@ public class MainActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		// initialise pref
-		pref = getPreferences(MODE_PRIVATE);
+		// initialise preferences
+		pref = getPreferences(Context.MODE_PRIVATE);
+		
+		// create alarm to start device at predefined time next day
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+     // TODO note that this needs to be tested with preference set (getInt from PreferenceManager?)
+        int s = settings.getInt("startTime", 8);
+		createStartAlarm(s,0);
 		
 		// create restart preference editor and update
         SharedPreferences.Editor editRestart = pref.edit();

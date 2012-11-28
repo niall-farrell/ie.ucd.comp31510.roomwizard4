@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+// receiver set to trigger on RECEIVE_BOOT_COMPLETED and start main activity
 public class StartAppAtBootReceiver extends BroadcastReceiver {
 
 	@Override

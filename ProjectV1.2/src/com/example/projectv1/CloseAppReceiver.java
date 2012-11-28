@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 
+// called by AlarmManager object and finishes main activity (end of day)
 public class CloseAppReceiver extends BroadcastReceiver {
 
 	@Override
