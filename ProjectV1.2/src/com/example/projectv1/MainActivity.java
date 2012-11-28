@@ -3,10 +3,14 @@ package com.example.projectv1;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Map;
 
 import com.example.projectv1.timeline.TimelineImageView;
 import com.example.projectv1.ClassBooking;
@@ -55,6 +59,16 @@ public class MainActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		try {
+			cb = getClassBooking();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 //		RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.myLayout);
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
@@ -87,8 +101,11 @@ public class MainActivity extends Activity{
 		}
 		
 		
+		
 		// Timeline Listener
-		ImageView timelineView = (ImageView)findViewById(R.id.timeline);
+		final TimelineImageView timelineView = (TimelineImageView)findViewById(R.id.timeline);
+		timelineView.setTimes(cb);
+		timelineView.invalidate(); // Redraw timelineView
 		timelineView.setBackgroundColor(Color.GREEN);
 		
 		OnTouchListener timelineListener = new OnTouchListener()
@@ -97,26 +114,27 @@ public class MainActivity extends Activity{
 			public boolean onTouch(View v, MotionEvent event)
 			{
 				float positionX = event.getX();
+				int width = timelineView.getWidth();
+				
 				if(event.getAction() == MotionEvent.ACTION_DOWN) {
-					// TODO These are just test values
-					int[][] time_array = new int[][] {{50, 150},{200, 300},{600,700}};
+			    	Map<String, Integer[]> draw_map = TimelineImageView.createDrawMap(cb, width);
 					
 					boolean occupied = false;
-					for (int i = 0; i<3; i++) {
-						if (time_array[i][0] < positionX && time_array[i][1] > positionX)
-						{
+					String class_id = "";
+					for (Map.Entry<String, Integer[]> entry : draw_map.entrySet()) {
+						if (entry.getValue()[0] < positionX && entry.getValue()[1] > positionX) {
 							occupied = true;
+							class_id = entry.getKey();
 						}
 					}
 					
 					String message;
 					if (occupied) {
-						message = "The room is occupied";
+						message = "The room is occupied - class UID " + class_id;
 					}
 					else {
 						message = "The room is available";
 					}
-					
 					
 					Toast.makeText(getApplicationContext(),
 							"You clicked at: " + positionX + "\n" + message, Toast.LENGTH_SHORT).show();
