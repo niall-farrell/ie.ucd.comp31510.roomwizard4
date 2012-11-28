@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.projectv1"
     android:versionCode="1"
@@ -6,14 +7,7 @@
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="9" />
-
-    <permission
-        android:name="PrefsPermission"
-        android:label="password permission"
-        android:protectionLevel="normal" />
-
-    <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
@@ -24,8 +18,7 @@
         <activity
             android:name="com.example.projectv1.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,17 +28,15 @@
         <activity
             android:name="com.example.projectv1.Preferences"
             android:label="@string/preferences"
-            android:permission="PrefsPermission"
             android:screenOrientation="landscape" >
             <intent-filter>
-                <action android:name="android.intent.action.PREFERENCES" />
+                <action android:name="com.project.PREFERENCES" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.example.projectv1.Menu"
-            android:exported="false"
             android:label="@string/menu"
             android:screenOrientation="landscape" >
             <intent-filter>
@@ -56,21 +47,10 @@
         </activity>
         <activity
             android:name="com.example.projectv1.Add_booking"
-            android:exported="false"
             android:label="@string/add_booking"
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="com.project.ADDBOOKING" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.example.projectv1.PasswordPrompt"
-            android:exported="false"
-            android:label="@string/enter_pass" >
-            <intent-filter>
-                <action android:name="android.intent.action.PASS" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
