@@ -99,7 +99,7 @@ public class MainActivity extends Activity{
 		final TimelineImageView timelineView = (TimelineImageView)findViewById(R.id.timeline);
 		timelineView.setTimes(cb);
 		timelineView.invalidate(); // Redraw timelineView
-		timelineView.setBackgroundColor(Color.GREEN);
+		timelineView.setBackgroundColor(0xFFb0d4e8);
 		
 		OnTouchListener timelineListener = new OnTouchListener()
 		{
