@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 
 import com.example.projectv1.ClassBooking;
 
+import android.R;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -22,7 +23,7 @@ import android.widget.ImageView;
 
 public class TimelineImageView extends ImageView{
 	Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
-	private ArrayList<ClassBooking> class_array;
+	private ArrayList<ClassBooking> class_array = new ArrayList<ClassBooking>();
 
 	public TimelineImageView(Context context) {
 		super(context);
@@ -38,7 +39,7 @@ public class TimelineImageView extends ImageView{
 		int height = canvas.getHeight();
 		int width = canvas.getWidth();
 		
-		p.setColor(Color.RED);
+		p.setColor(Color.rgb(220, 65, 65));
     	Map<String, Integer[]> draw_map = createDrawMap(class_array, width);
 		for (Map.Entry<String, Integer[]> entry : draw_map.entrySet()) {
 			canvas.drawRect(entry.getValue()[0], 0, entry.getValue()[1], height, p);
@@ -47,7 +48,7 @@ public class TimelineImageView extends ImageView{
 		// TODO - drawing temp hour marks
 		p.setColor(Color.BLACK);
 		int num_hours = 12;
-		for (int i=0; i<num_hours; i++) {
+		for (int i=0; i<num_hours+1; i++) {
 			canvas.drawLine((i*60) * (width / (num_hours*60)), 0, (i*60) * (width / (num_hours*60)), height, p);
 			canvas.drawText(8+i+":00", (i*60) * (width / (num_hours*60)), 10, p);
 		}
