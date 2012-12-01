@@ -1,5 +1,5 @@
 package com.example.projectv1;
-// this is just a test comment  test again
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -53,8 +53,6 @@ public class MainActivity extends Activity{
 	// Create our linkedlist of class bookings
 	ArrayList<ClassBooking> cb = new ArrayList<ClassBooking>();
 	
-	Boolean occupied = true;
-	Calendar c = Calendar.getInstance();
 	String language;
 	String[] times = {"a","b","c","d", "e", "f", "g"};
 	FiveMinRefresh fiveMin;
@@ -63,6 +61,8 @@ public class MainActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+
 		
 		try {
 			cb = getClassBooking();
@@ -74,33 +74,13 @@ public class MainActivity extends Activity{
 			e.printStackTrace();
 		}
 		
-//		RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.myLayout);
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
-//		content.setGravity(Gravity.CENTER_HORIZONTAL);
+
 		
-		content.setText("start");
+		content.setText("Getting data");
 		fiveMin= new FiveMinRefresh(times, content);	
-		fiveMin.execute();
-/*
-		int date = c.get(Calendar.DATE);
-		int month = c.get(Calendar.MONTH);
-		int year = c.get(Calendar.YEAR);
-		
-		if (occupied)
-		{
-			content.setText("Organizer's name \n" +
-					"Event name \n" +
-					"Booking time (from - to) \n" +
-					"Current date: " + date + "/" + month + "/" + year + ".\n" +
-					"Room number \n");
-			// mainLayout.setBackgroundColor(0xCCCC0000);
-		} else
-		{
-			content.setText("This room is currently free");
-			// mainLayout.setBackgroundColor(Color.BLUE);
-		}
-*/		
+		fiveMin.execute();		
 		
 		
 		// Timeline Listener
