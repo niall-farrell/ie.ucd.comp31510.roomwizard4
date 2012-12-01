@@ -56,6 +56,8 @@ public class MainActivity extends Activity{
 	Boolean occupied = true;
 	Calendar c = Calendar.getInstance();
 	String language;
+	String[] times = {"a","b","c","d", "e", "f", "g"};
+	FiveMinRefresh fiveMin;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,10 @@ public class MainActivity extends Activity{
 		content = (TextView) findViewById(R.id.content);
 //		content.setGravity(Gravity.CENTER_HORIZONTAL);
 		
-
+		content.setText("start");
+		fiveMin= new FiveMinRefresh(times, content);	
+		fiveMin.execute();
+/*
 		int date = c.get(Calendar.DATE);
 		int month = c.get(Calendar.MONTH);
 		int year = c.get(Calendar.YEAR);
@@ -95,7 +100,7 @@ public class MainActivity extends Activity{
 			content.setText("This room is currently free");
 			// mainLayout.setBackgroundColor(Color.BLUE);
 		}
-		
+*/		
 		
 		
 		// Timeline Listener
