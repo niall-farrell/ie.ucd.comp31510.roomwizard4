@@ -12,13 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+// removed this line from AndroidManifest.xml and preferences work     android:permission="PrefsPermission"
+
+
 public class Preferences extends PreferenceActivity {
     
     @Override
     public void onCreate(Bundle savedInstanceState) {       
         super.onCreate(savedInstanceState);       
+        Log.v("Preferences.java","before xml load");
         addPreferencesFromResource(R.xml.preferences);       
-        
+        Log.v("Preferences.java","before check password");
         // must call this method to check password before  displaying activity
         checkPassword();
 

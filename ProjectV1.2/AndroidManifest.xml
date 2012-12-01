@@ -35,13 +35,13 @@
         <activity
             android:name="com.example.projectv1.Preferences"
             android:label="@string/preferences"
-            android:permission="PrefsPermission"
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.PREFERENCES" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            
         </activity>
         <activity
             android:name="com.example.projectv1.Menu"
