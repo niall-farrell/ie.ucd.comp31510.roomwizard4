@@ -20,13 +20,12 @@ public class Preferences extends PreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {       
         super.onCreate(savedInstanceState);       
-        Log.v("Preferences.java","before xml load");
         addPreferencesFromResource(R.xml.preferences);       
-        Log.v("Preferences.java","before check password");
+        
         // must call this method to check password before  displaying activity
         checkPassword();
 
- //       Preference button = (Preference)findPreference("backButtons");
+//Go back a screen
         Preference button = (Preference)getPreferenceManager().findPreference("backButtons");      
         
         button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -40,6 +39,21 @@ public class Preferences extends PreferenceActivity {
                 			startActivity(openMenu);
 
                             finish();
+         	                            return true;
+                        }
+                    });
+
+//Force refresh iCal
+        Preference buttoniCal = (Preference)getPreferenceManager().findPreference("refresh");      
+        
+        buttoniCal.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                        @Override
+                        public boolean onPreferenceClick(Preference arg0) {
+                        	//Code goes here to force iCal refresh
+                			//Intent openMenu = new Intent("com.project.MENU");
+                			//startActivity(openMenu);
+
+                            //finish();
          	                            return true;
                         }
                     });

@@ -3,55 +3,59 @@
 	<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 	 
 	 
-     <Preference android:title="Press to go back"
+     <Preference android:title="@string/Pressback"
                 android:key="backButtons"
-                android:summary="Press to go Back a screen"/>
+                android:summary="@string/PressBackScreen"/>
 
 	 
 	        <EditTextPreference
 	            android:key="room"
-	            android:title="Room Name"
-	            android:summary="Select Room Name"
-	            android:dialogTitle="Room Name"
-	            android:dialogMessage="Room Name"   
+	            android:title="@string/RoomName"
+	            android:summary="@string/EnterRoomName"
+	            android:dialogTitle="@string/RoomName"
+	            android:dialogMessage="@string/RoomName"   
 	            android:defaultValue="B108" />
 
 	        <EditTextPreference
 	            android:key="urlNewBooking"
-	            android:title="URL for New Booking"
-	            android:summary="Enter the URL for a new booking"
-	            android:dialogTitle="URL for New Booking"
-	            android:dialogMessage="URL"   
+	            android:title="@string/URLforNewBooking"
+	            android:summary="@string/EnterURLforNewBooking"
+	            android:dialogTitle="@string/URLforNewBooking"
+	            android:dialogMessage="@string/EnterURLforNewBooking"
 	            android:defaultValue="Default url" />
 
 	        <EditTextPreference
 	            android:key="urliCalendar"
-	            android:title="URL for iCalendar"
-	            android:summary="Enter the URL for iCalendar download"
-	            android:dialogTitle="URL for iCalendar"
-	            android:dialogMessage="URL"   
+	            android:title="@string/URLforiCalendar"
+	            android:summary="@string/EnterURLforiCalendar"
+	            android:dialogTitle="@string/URLforiCalendar"
+	            android:dialogMessage="@string/EnterURLforiCalendar"   
 	            android:defaultValue="Default url" />
 
 	        <EditTextPreference
 	            android:key="timeForRefresh"
-	            android:title="Time in minutes for iCalendar refresh"
-	            android:summary="Enter time in minutes for iCalendar refresh"
-	            android:dialogTitle="Time in minutes for iCalendar refresh"
-	            android:dialogMessage="Time in minutes"   
+	            android:title="@string/TimeinminutesforiCalendarrefresh"
+	            android:summary="@string/EnterTimeinminutesforiCalendarrefresh"
+	            android:dialogTitle="@string/TimeinminutesforiCalendarrefresh"
+	            android:dialogMessage="@string/EnterTimeinminutesforiCalendarrefresh"   
 	            android:defaultValue="15" />
 
+	        <Preference android:title="@string/ForceiCalendarrefresh"
+                android:key="refresh"
+                android:summary="@string/ForceiCalendarrefresh"/>
+	        
 	        <EditTextPreference
 	            android:key="password"
-	            android:title="Password for preferences"
-	            android:summary="Enter password for preferences screen"
-	            android:dialogTitle="Password for preferences"
-	            android:dialogMessage="Password"   
+	            android:title="@string/Passwordforpreferences"
+	            android:summary="@string/EnterPasswordforpreferences"
+	            android:dialogTitle="@string/Passwordforpreferences"
+	            android:dialogMessage="@string/EnterPasswordforpreferences"   
 	            android:defaultValue="1234" />
 	            
 	        <ListPreference
 	            android:key="startTime"
-	            android:title="Start Time"
-	            android:summary="Enter the start time"
+	            android:title="@string/StartTime"
+	            android:summary="@string/EnterStartTime"
 	            android:defaultValue="8:00"
 	            android:entries="@array/Interval"
 	            android:entryValues="@array/IntervalValues"
@@ -59,8 +63,8 @@
 
 	        <ListPreference
 	            android:key="finishTime"
-	            android:title="Finish Time"
-	            android:summary="Enter the finish time"
+	            android:title="@string/FinishTime"
+	            android:summary="@string/EnterFinishTime"
 	            android:defaultValue="18:00"
 	            android:entries="@array/Interval"
 	            android:entryValues="@array/IntervalValues"

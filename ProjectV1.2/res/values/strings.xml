@@ -23,4 +23,26 @@
     <string name="main_pass_prompt">Please enter your password. (The default value is \'default\'.)</string>
     <string name="time">Time</string>
 
+    
+    <string name="Pressback">Press to go Back</string>
+    <string name="PressBackScreen">Press to go Back a Screen</string>
+    <string name="RoomName">Room Name</string>
+    <string name="EnterRoomName">Enter Room Name</string>
+    <string name="URLforNewBooking">URL for New Booking</string>
+    <string name="EnterURLforNewBooking">Enter URL for New Booking</string>
+    <string name="URLforiCalendar">URL for iCalendar</string>
+    <string name="EnterURLforiCalendar">Enter URL for iCalendar</string>
+    <string name="TimeinminutesforiCalendarrefresh">Time in minutes for iCalendar refresh</string>
+    <string name="EnterTimeinminutesforiCalendarrefresh">Enter time in minutes for iCalendar refresh</string>
+    <string name="ForceiCalendarrefresh">Force iCalendar refresh</string>
+    <string name="Passwordforpreferences">Password for preferences</string>
+    <string name="EnterPasswordforpreferences">Enter Password for preferences</string>
+    <string name="StartTime">Start Time</string>
+    <string name="EnterStartTime">Select Start Time</string>
+    <string name="FinishTime">Finish Time</string>
+    <string name="EnterFinishTime">Select Finish Time</string>
+    
+    
+    
+
 </resources>

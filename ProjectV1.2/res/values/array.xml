@@ -2,30 +2,59 @@
 	 
 	<resources>
 	 
-	    <string-array name="updateInterval">
-	        <item name="1000">Every 1 second</item>
-	        <item name="5000">Every 5 seconds</item>
-	        <item name="30000">Every 30 seconds</item>
-	        <item name="60000">Every 1 minute</item>
-	        <item name="300000">Every 5 minutes</item>
-	    </string-array>
-	     
-	    <string-array name="updateIntervalValues">
-	        <item name="1000">1000</item>
-	        <item name="5000">5000</item>
-	        <item name="30000">30000</item>
-	        <item name="60000">60000</item>
-	        <item name="300000">300000</item>
-	    </string-array>
 
 	    <string-array name="Interval">
+	        <item name="1">1am</item>
+	        <item name="2">2am</item>
+	        <item name="3">3am</item>
+	        <item name="4">4am</item>
+	        <item name="5">5am</item>
+	        <item name="6">6am</item>
+	        <item name="7">7am</item>
 	        <item name="8">8am</item>
+	        <item name="9">9am</item>
+	        <item name="10">10am</item>
+	        <item name="11">11am</item>
+	        <item name="12">12 noon</item>
+	        <item name="13">1pm</item>
+	        <item name="14">2pm</item>
+	        <item name="15">3pm</item>
+	        <item name="16">4pm</item>
+	        <item name="17">5pm</item>
+	        <item name="18">6pm</item>
+	        <item name="19">7pm</item>
 	        <item name="20">8pm</item>
+	        <item name="21">9pm</item>
+	        <item name="22">10pm</item>
+	        <item name="23">11pm</item>
+	        <item name="24">12 midnight</item>
 	    </string-array>
 	     
 	    <string-array name="IntervalValues">
+	        <item name="1">1</item>
+	        <item name="2">2</item>
+	        <item name="3">3</item>
+	        <item name="4">4</item>
+	        <item name="5">5</item>
+	        <item name="6">6</item>
+	        <item name="7">7</item>
 	        <item name="8">8</item>
+	        <item name="9">9</item>
+	        <item name="10">10</item>
+	        <item name="11">11</item>
+	        <item name="12">12</item>
+	        <item name="13">13</item>
+	        <item name="14">14</item>
+	        <item name="15">15</item>
+	        <item name="16">16</item>
+	        <item name="17">17</item>
+	        <item name="18">18</item>
+	        <item name="19">19</item>
 	        <item name="20">20</item>
+	        <item name="21">21</item>
+	        <item name="22">22</item>
+	        <item name="23">23</item>
+	        <item name="24">24</item>
 	    </string-array>
 	    	 
   </resources>
