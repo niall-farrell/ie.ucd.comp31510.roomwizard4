@@ -69,6 +69,14 @@
 	            android:entries="@array/Interval"
 	            android:entryValues="@array/IntervalValues"
 	        />   
+	        Send Reports
+            <CheckBoxPreference
+	            android:key="SendReports"
+	            android:summary="@string/Enableordisablesendreports"
+	            android:title="@string/SendReports"
+	            android:defaultValue="false"
+	        />
+	 
 	 
 	</PreferenceScreen>
 		

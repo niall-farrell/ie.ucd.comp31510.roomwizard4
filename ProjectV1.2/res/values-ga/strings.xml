@@ -38,5 +38,7 @@
     <string name="EnterStartTime">Select Start Time</string>
     <string name="FinishTime">Finish Time</string>
     <string name="EnterFinishTime">Select Finish Time</string>
-   
+    <string name="SendReports">Send Reports</string>
+    <string name="Enableordisablesendreports">Enable or disable send reports</string>
+     
 </resources>
