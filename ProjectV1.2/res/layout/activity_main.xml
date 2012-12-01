@@ -46,6 +46,7 @@
         android:layout_below="@+id/menu"
         android:layout_alignParentRight="true"
         android:layout_marginRight="18dp"
+        android:onClick="buttonClick"
         android:background="@drawable/irishbtn" />
 
     <Button
@@ -54,6 +55,7 @@
         android:layout_height="27dp"
         android:layout_below="@+id/gaeilge"
         android:layout_alignParentRight="true"
+        android:onClick="buttonClick"
         android:background="@drawable/engbtn" />
     
      <ImageView

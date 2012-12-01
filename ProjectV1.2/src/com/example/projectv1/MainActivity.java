@@ -20,10 +20,13 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -149,6 +152,16 @@ public class MainActivity extends Activity{
 		return true;
 	}
 
+	public void setLanguage(String lang){
+		Resources standardResources = getBaseContext().getResources();
+		AssetManager assets = standardResources.getAssets();
+		DisplayMetrics metrics = standardResources.getDisplayMetrics();
+		Configuration config = new Configuration(standardResources.getConfiguration());
+		config.locale = new Locale(lang);
+		Resources defaultResources = new Resources(assets, metrics, config);
+		
+		
+	}
 	
 	// is called from XML when button is clicked
 	public void buttonClick(View v)
@@ -162,19 +175,15 @@ public class MainActivity extends Activity{
 			
 		case R.id.english:
 			
+			setLanguage("en");
+			
 			break;
 			
 		case R.id.gaeilge:
-			/*
-			language="ga";
-			Locale loc2 = new Locale(language);
-			Locale.setDefault(loc2);
-			Configuration config = new Configuration();
-			config.locale =loc2;
-			getBaseContext().getResources().updateConfiguration(config,
-					getBaseContext().getResources().getDisplayMetrics());
-			this.setContentView(R.layout.activity_main);
-			*/
+			
+			setLanguage("ga");
+
+			
 			break;
 		}
 
