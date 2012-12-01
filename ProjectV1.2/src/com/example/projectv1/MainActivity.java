@@ -83,7 +83,7 @@ public class MainActivity extends Activity{
 		fiveMin.execute();		
 		
 		
-		// Timeline Listener
+		// Timeline Listener.
 		final TimelineImageView timelineView = (TimelineImageView)findViewById(R.id.timeline);
 		timelineView.setTimes(cb);
 		timelineView.invalidate(); // Redraw timelineView
