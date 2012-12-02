@@ -54,7 +54,6 @@ public class MainActivity extends Activity{
 	ArrayList<ClassBooking> cb = new ArrayList<ClassBooking>();
 	
 	String language;
-	String[] times = {"a","b","c","d", "e", "f", "g"};
 	FiveMinRefresh fiveMin;
 	
 	@Override
@@ -79,7 +78,7 @@ public class MainActivity extends Activity{
 
 		
 		content.setText("Getting data");
-		fiveMin= new FiveMinRefresh(times, content);	
+		fiveMin= new FiveMinRefresh(cb, content);	
 		fiveMin.execute();		
 		
 		
