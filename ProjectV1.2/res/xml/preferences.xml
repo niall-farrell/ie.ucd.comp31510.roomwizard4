@@ -56,7 +56,7 @@
 	            android:key="startTime"
 	            android:title="@string/StartTime"
 	            android:summary="@string/EnterStartTime"
-	            android:defaultValue="8:00"
+	            android:defaultValue="8"
 	            android:entries="@array/Interval"
 	            android:entryValues="@array/IntervalValues"
 	        />   
@@ -65,7 +65,7 @@
 	            android:key="finishTime"
 	            android:title="@string/FinishTime"
 	            android:summary="@string/EnterFinishTime"
-	            android:defaultValue="18:00"
+	            android:defaultValue="18"
 	            android:entries="@array/Interval"
 	            android:entryValues="@array/IntervalValues"
 	        />   

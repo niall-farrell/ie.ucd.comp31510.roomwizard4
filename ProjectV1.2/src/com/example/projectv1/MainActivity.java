@@ -3,51 +3,45 @@ package com.example.projectv1;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import com.example.projectv1.timeline.TimelineImageView;
-import com.example.projectv1.ClassBooking;
-
-import android.net.Uri;
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.Property;
-import net.fortuna.ical4j.model.TimeZoneRegistry;
-import net.fortuna.ical4j.model.TimeZoneRegistryFactory;
-import net.fortuna.ical4j.util.Calendars;
-import net.fortuna.ical4j.util.CompatibilityHints;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.TextView;
+
+import com.example.projectv1.timeline.TimelineImageView;
 
 public class MainActivity extends Activity {
 	// Create our linkedlist of class bookings
@@ -70,6 +64,13 @@ public class MainActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		// initialise preferences
+		
+		// create alarm to start device at predefined time next day
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        int startHour = Integer.parseInt(settings.getString("startTime", "8"));
+		createStartAlarm(startHour,0);
 
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
@@ -270,4 +271,62 @@ public class MainActivity extends Activity {
 
 		return cb;
 	}
+	
+	// creates AlarmManager object to restore device from standby at specified time
+	public void createStartAlarm(int hour, int minute)
+	{
+		// create calendar object for tomorrow using time parameters
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(System.currentTimeMillis());
+        cal.add(Calendar.DATE, 1);
+        cal.set(Calendar.HOUR_OF_DAY, hour);
+        cal.set(Calendar.MINUTE, minute);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+		
+		// initialise intent to start boot app service
+        Intent myIntent = new Intent(getBaseContext(), MyScheduledReceiver.class);
+
+        PendingIntent pendingIntent
+         = PendingIntent.getBroadcast(getBaseContext(),
+           0, myIntent, 0);
+      
+        // bind intent to alarm
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+	}
+	
+	// method to send statistics report to server
+	// this is called at the end of the day prior to standby
+	public void sendStats()
+	{
+		// Create holder to access preferences
+		SharedPreferences pref;
+		pref = getPreferences(Context.MODE_PRIVATE);
+		
+        // Create HttpClient and header
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost("http://www.chartspms.com/android/processStats.php"); // ## update to live server
+
+        try {
+            // Add your data
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
+            nameValuePairs.add(new BasicNameValuePair("deviceid", "1"));
+            nameValuePairs.add(new BasicNameValuePair("restart", "" + pref.getInt("restart", 0)));
+            nameValuePairs.add(new BasicNameValuePair("interact", "" + pref.getInt("interact", 0)));
+            nameValuePairs.add(new BasicNameValuePair("network", "" + pref.getInt("network", 0)));
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+            // Execute HTTP Post Request
+            HttpResponse response = httpclient.execute(httppost);
+            
+        } catch (Exception e)
+        {
+            // update nNetwork in pref
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putInt("nInteract", pref.getInt("nInteract", 0) + 1);
+        }
+	}
+
 }
