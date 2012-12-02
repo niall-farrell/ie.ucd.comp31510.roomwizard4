@@ -14,10 +14,14 @@
 
 package com.example.projectv1;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.TextView;
 
 
@@ -31,7 +35,8 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	private static int date = c.get(Calendar.DATE);
 	private static int month = c.get(Calendar.MONTH);
 	private static int year = c.get(Calendar.YEAR);	
-	private static Boolean occupied = true;
+	private static Boolean occupied = false;
+	private static String display;
 	
 	FiveMinRefresh(ArrayList<ClassBooking> inCb, TextView inView)
 	{
@@ -56,13 +61,11 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	
 		int index = Integer.valueOf(result);
 		
-		setDisplay(index);
-		
-		count++;
-		if (count<size){
-			
+		if (count<size) {
+			setDisplay(index);
 			new FiveMinRefresh(cb, view).execute();
 		}
+		count++;
 	}
 	
 	protected void onPreExecute(){
@@ -83,12 +86,21 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		String end = cb.get(index).getEndTime();
 		String url = cb.get(index).getURL();
 		
-		String display = "Summary: " + summary + " \n" +
-				"Time: " + start + " - " + end + " \n" +
-						"URL: " + url + "\n";
+		Calendar start_cal = iCalToTimeToday(start);
+		Calendar end_cal = iCalToTimeToday(end);
+		Calendar now_cal = Calendar.getInstance(); 
 		
-		if (occupied)
-		{
+		SimpleDateFormat timeFormat = new SimpleDateFormat("K:mm a");
+		
+		// Check if room is currently occupied
+		if (now_cal.after(start_cal) && now_cal.before(end_cal)) {
+			occupied = true;
+			display = "Summary: " + summary + " \n" +
+					"Time: " + timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +
+							"URL: " + url + "\n";
+		}
+		
+		if (occupied) {
 			view.setText(display);
 			
 			/*view.setText("Organizer's name \n" +
@@ -102,5 +114,27 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 			view.setText("This room is currently free");
 			// mainLayout.setBackgroundColor(Color.BLUE);
 		}
+	}
+	
+	public static Calendar iCalToTimeToday(String iCalText) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+		Date date = null;
+		
+		try {
+			date = format.parse(iCalText);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block  
+			e1.printStackTrace();  
+		}
+		
+		// Set calendar to given time
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		
+		// Set calendar to today's date
+		Calendar now = Calendar.getInstance();
+		cal.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+		
+		return cal;
 	}
 }
