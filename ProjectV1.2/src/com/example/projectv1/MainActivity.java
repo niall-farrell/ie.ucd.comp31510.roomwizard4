@@ -49,20 +49,18 @@ import net.fortuna.ical4j.model.TimeZoneRegistryFactory;
 import net.fortuna.ical4j.util.Calendars;
 import net.fortuna.ical4j.util.CompatibilityHints;
 
-public class MainActivity extends Activity{
+public class MainActivity extends Activity {
 	// Create our linkedlist of class bookings
 	ArrayList<ClassBooking> cb = new ArrayList<ClassBooking>();
-	
+
 	String language;
 	FiveMinRefresh fiveMin;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
 
-		
 		try {
 			cb = getClassBooking();
 		} catch (IOException e) {
@@ -72,61 +70,76 @@ public class MainActivity extends Activity{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
 
-		
 		content.setText("Getting data");
-		fiveMin= new FiveMinRefresh(cb, content);	
-		fiveMin.execute();		
-		
-		
+		fiveMin = new FiveMinRefresh(cb, content);
+		fiveMin.execute();
+
 		// Timeline Listener.
-		final TimelineImageView timelineView = (TimelineImageView)findViewById(R.id.timeline);
+		final TimelineImageView timelineView = (TimelineImageView) findViewById(R.id.timeline);
 		timelineView.setTimes(cb);
 		timelineView.invalidate(); // Redraw timelineView
 		timelineView.setBackgroundColor(0xFFb0d4e8);
-		
-		OnTouchListener timelineListener = new OnTouchListener()
-		{
+
+		OnTouchListener timelineListener = new OnTouchListener() {
 			@Override
-			public boolean onTouch(View v, MotionEvent event)
-			{
+			public boolean onTouch(View v, MotionEvent event) {
 				float positionX = event.getX();
 				int width = timelineView.getWidth();
-				
-				if(event.getAction() == MotionEvent.ACTION_DOWN) {
-			    	Map<String, Integer[]> draw_map = TimelineImageView.createDrawMap(cb, width);
-					
+
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					Map<String, Integer[]> draw_map = TimelineImageView
+							.createDrawMap(cb, width);
+
 					boolean occupied = false;
 					String class_id = "";
-					for (Map.Entry<String, Integer[]> entry : draw_map.entrySet()) {
-						if (entry.getValue()[0] < positionX && entry.getValue()[1] > positionX) {
+					for (Map.Entry<String, Integer[]> entry : draw_map
+							.entrySet()) {
+						if (entry.getValue()[0] < positionX
+								&& entry.getValue()[1] > positionX) {
 							occupied = true;
 							class_id = entry.getKey();
 						}
 					}
+					/*
+					 * String message; if (occupied) { message =
+					 * "The room is occupied - class UID " + class_id; } else {
+					 * message = "The room is available"; }
+					 * 
+					 * Toast.makeText(getApplicationContext(),
+					 * "You clicked at: " + positionX + "\n" + message,
+					 * Toast.LENGTH_SHORT).show();
+					 */
+					String summary="", start="", end="", url="";
 					
-					String message;
-					if (occupied) {
-						message = "The room is occupied - class UID " + class_id;
+					for(ClassBooking key:cb){
+						if(key.getUID().equals(class_id)){
+							
+							summary = key.getSummary();
+							start   = key.getStartTime();
+							end     = key.getEndTime();
+							url     = key.getURL();
+							break;
+						}
 					}
-					else {
-						message = "The room is available";
-					}
-					
-					Toast.makeText(getApplicationContext(),
-							"You clicked at: " + positionX + "\n" + message, Toast.LENGTH_SHORT).show();
-					
+					Intent openDetails = new Intent("android.intent.action.DETAILS");
+					openDetails.putExtra("uid", class_id);
+					openDetails.putExtra("summary", summary);
+					openDetails.putExtra("start", start);
+					openDetails.putExtra("end", end);
+					openDetails.putExtra("url", url);
+					startActivity(openDetails);
 					return true;
 				}
 				return false;
 			}
 		};
-		
+
 		timelineView.setOnTouchListener(timelineListener);
-		
+
 	}
 
 	@Override
@@ -136,78 +149,83 @@ public class MainActivity extends Activity{
 		return true;
 	}
 
-	public void setLanguage(String lang){
+	public void setLanguage(String lang) {
 		Resources standardResources = getBaseContext().getResources();
 		AssetManager assets = standardResources.getAssets();
 		DisplayMetrics metrics = standardResources.getDisplayMetrics();
-		Configuration config = new Configuration(standardResources.getConfiguration());
+		Configuration config = new Configuration(
+				standardResources.getConfiguration());
 		config.locale = new Locale(lang);
 		Resources defaultResources = new Resources(assets, metrics, config);
-		
-		
+
 	}
-	
+
 	// is called from XML when button is clicked
-	public void buttonClick(View v)
-	{
-		switch(v.getId())
-		{
+	public void buttonClick(View v) {
+		switch (v.getId()) {
 		case R.id.menu:
 			Intent openMenu = new Intent("com.project.MENU");
 			startActivity(openMenu);
 			break;
-			
+
 		case R.id.english:
-			
+
 			setLanguage("en");
-			
+
 			break;
-			
+
 		case R.id.gaeilge:
-			
+
 			setLanguage("ga");
 
-			
 			break;
 		}
 
 	}
-	
+
 	public static String eventActionToString(int eventAction) {
-	    switch (eventAction) {
-	        case MotionEvent.ACTION_CANCEL: return "Cancel";
-	        case MotionEvent.ACTION_DOWN: return "Down";
-	        case MotionEvent.ACTION_MOVE: return "Move";
-	        case MotionEvent.ACTION_OUTSIDE: return "Outside";
-	        case MotionEvent.ACTION_UP: return "Up";
-	        case MotionEvent.ACTION_POINTER_DOWN: return "Pointer Down";
-	        case MotionEvent.ACTION_POINTER_UP: return "Pointer Up";
-	    }
-	    return "";
+		switch (eventAction) {
+		case MotionEvent.ACTION_CANCEL:
+			return "Cancel";
+		case MotionEvent.ACTION_DOWN:
+			return "Down";
+		case MotionEvent.ACTION_MOVE:
+			return "Move";
+		case MotionEvent.ACTION_OUTSIDE:
+			return "Outside";
+		case MotionEvent.ACTION_UP:
+			return "Up";
+		case MotionEvent.ACTION_POINTER_DOWN:
+			return "Pointer Down";
+		case MotionEvent.ACTION_POINTER_UP:
+			return "Pointer Up";
+		}
+		return "";
 	}
-	
-	//Calendar calendar = Calendars.load(new URL("http://ical4j.cvs.sourceforge.net/viewvc/*checkout*/ical4j/iCal4j/etc/samples/valid/Australian32Holidays.ics"));
-		public  java.util.ArrayList<ClassBooking> getClassBooking() throws IOException, ParserException {
-			String uid = "";
-			String summary = "";
-			String st = "";
-			String et = "";
-			String url = "";
-			URL add = null; 
-			try {
-				add = new URL("http://www.chartspms.com/android/calendar.ics");
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			net.fortuna.ical4j.model.Calendar calendar = new net.fortuna.ical4j.model.Calendar();
-			CalendarBuilder builder = new CalendarBuilder();
-			//CalendarBuilder builder = new CalendarBuilder();
-	    	
-				calendar = builder.build(add.openStream());
-		
-	    	if(calendar!=null)
-	    	{
+
+	// Calendar calendar = Calendars.load(new
+	// URL("http://ical4j.cvs.sourceforge.net/viewvc/*checkout*/ical4j/iCal4j/etc/samples/valid/Australian32Holidays.ics"));
+	public java.util.ArrayList<ClassBooking> getClassBooking()
+			throws IOException, ParserException {
+		String uid = "";
+		String summary = "";
+		String st = "";
+		String et = "";
+		String url = "";
+		URL add = null;
+		try {
+			add = new URL("http://www.chartspms.com/android/calendar.ics");
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		net.fortuna.ical4j.model.Calendar calendar = new net.fortuna.ical4j.model.Calendar();
+		CalendarBuilder builder = new CalendarBuilder();
+		// CalendarBuilder builder = new CalendarBuilder();
+
+		calendar = builder.build(add.openStream());
+
+		if (calendar != null) {
 
 			// Iterating over a Calendar
 			for (Iterator i = calendar.getComponents().iterator(); i.hasNext();) {
@@ -215,7 +233,8 @@ public class MainActivity extends Activity{
 
 				System.out.println("Component [" + component.getName() + "]");
 
-				for (Iterator j = component.getProperties().iterator(); j.hasNext();) {
+				for (Iterator j = component.getProperties().iterator(); j
+						.hasNext();) {
 					Property property = (Property) j.next();
 
 					if (property.getName().equals("UID")) {
@@ -236,18 +255,19 @@ public class MainActivity extends Activity{
 				}
 				cb.add(new ClassBooking(uid, summary, st, et, url));
 			}
-	    	}
-	    	for (ClassBooking booking : cb) {
-				/**String message = "UID:" + booking.getUID() + "ST: "
-						+ booking.getStartTime() + "ET: " + booking.getEndTime();
-				Log.i("pab", message);**/
-
-				System.out.println("UID:" + booking.getUID() + "ST: "
-						+ booking.getStartTime() + "ET: " + booking.getEndTime());
-
-			}
-
-			
-			return cb;
 		}
+		for (ClassBooking booking : cb) {
+			/**
+			 * String message = "UID:" + booking.getUID() + "ST: " +
+			 * booking.getStartTime() + "ET: " + booking.getEndTime();
+			 * Log.i("pab", message);
+			 **/
+
+			System.out.println("UID:" + booking.getUID() + "ST: "
+					+ booking.getStartTime() + "ET: " + booking.getEndTime());
+
+		}
+
+		return cb;
+	}
 }

@@ -22,8 +22,6 @@
     <string name="submit">Submit</string>
     <string name="main_pass_prompt">Please enter your password. (The default value is \'default\'.)</string>
     <string name="time">Time</string>
-
-    
     <string name="Pressback">Press to go Back</string>
     <string name="PressBackScreen">Press to go Back a Screen</string>
     <string name="RoomName">Room Name</string>
@@ -43,8 +41,6 @@
     <string name="EnterFinishTime">Select Finish Time</string>
     <string name="SendReports">Send Reports</string>
     <string name="Enableordisablesendreports">Enable or disable send reports</string>
-   
-    
-    
+    <string name="title_activity_display_details">DisplayDetails</string>
 
 </resources>

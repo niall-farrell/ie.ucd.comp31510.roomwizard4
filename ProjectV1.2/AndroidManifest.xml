@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.projectv1"
     android:versionCode="1"
@@ -41,7 +42,6 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            
         </activity>
         <activity
             android:name="com.example.projectv1.Menu"
@@ -71,6 +71,16 @@
             android:label="@string/enter_pass" >
             <intent-filter>
                 <action android:name="android.intent.action.PASS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.projectv1.DisplayDetails"
+            android:label="@string/title_activity_display_details"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.DETAILS" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
