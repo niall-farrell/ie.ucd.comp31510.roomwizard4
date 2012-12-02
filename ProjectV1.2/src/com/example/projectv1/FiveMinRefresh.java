@@ -61,6 +61,9 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	
 		int index = Integer.valueOf(result);
 		
+		Log.v("count", count + "");
+		Log.v("size", size + "");
+		
 		if (count<size) {
 			setDisplay(index);
 			new FiveMinRefresh(cb, view).execute();
@@ -69,11 +72,10 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	}
 	
 	protected void onPreExecute(){
-		
-		if(count==0)
-		{
+		if(count==0) {
 			setDisplay(0);
 		}
+		count=0;
 	}
 	protected void onProgressUpdate(Void... values){
 		
