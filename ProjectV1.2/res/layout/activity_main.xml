@@ -24,7 +24,7 @@
         android:layout_height="26dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/roomwizard" />
+        android:src="@drawable/logo" />
 
     <com.example.projectv1.timeline.TimelineImageView
         android:id="@+id/timeline"
