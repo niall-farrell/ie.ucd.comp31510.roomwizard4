@@ -6,7 +6,7 @@
 //	It is also given a TextView to display the results in.
 //	A new thread is created when FiveMinRefresh.execute() is called. (build in method of AsynckTask class.)
 //	It first runs onPreExecute, which currently sets initial values the first time it is run.
-//	Then it calls doInBackground, which makes it wait. This is set for 1 second for debugging, will eventually be set to 5 minutes.
+//	Then it calls doInBackground, which makes it wait.
 //  Finally, the onPostExecute method is called, which updates the display and then creates a new instance of the FiveMinRefresh
 //  class to wait 5 more minutes and do the next update.
 
@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -31,10 +33,6 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	private static int size;
 	private static ArrayList<ClassBooking> cb;
 	private static TextView view;
-	private static Calendar c = Calendar.getInstance();
-	private static int date = c.get(Calendar.DATE);
-	private static int month = c.get(Calendar.MONTH);
-	private static int year = c.get(Calendar.YEAR);	
 	private static Boolean occupied = false;
 	private static String display;
 	
@@ -47,17 +45,17 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	
 
 	@Override
-	protected String doInBackground(String... params) {
+	protected String doInBackground(String... params) {		// wait 5 minutes and then calls onPostExecute
 	
 			try{
-				Thread.sleep(2000);
+				Thread.sleep(5 * 60 * 1000);	// 5 minutes * 60 seconds * 1000 milliseconds
 			}catch(InterruptedException e){
 				e.printStackTrace();
 			}
 		
 		return String.valueOf(count);
 	}
-	protected void onPostExecute(String result){
+	protected void onPostExecute(String result){		// update the display and then start the next thread to wait 5 more minutes 
 	
 		int index = Integer.valueOf(result);
 		
@@ -71,7 +69,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		count++;
 	}
 	
-	protected void onPreExecute(){
+	protected void onPreExecute(){		// executed before waiting. if this is the first time it is called then set the display now
 		if(count==0) {
 			setDisplay(0);
 		}
@@ -97,24 +95,20 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		// Check if room is currently occupied
 		if (now_cal.after(start_cal) && now_cal.before(end_cal)) {
 			occupied = true;
-			display = "Summary: " + summary + " \n" +
-					"Time: " + timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +
+			display = summary + " \n" +
+					 timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +
 							"URL: " + url + "\n";
 		}
 		
-		if (occupied) {
-			view.setText(display);
+
+		
+		if (occupied) {			
 			
-			/*view.setText("Organizer's name \n" +
-					"Event name \n" +
-					"Booking time (from - to) \n" +
-					"Current date: " + date + "/" + month + "/" + year + ".\n" +
-					"Room number \n"+ display);
-			// mainLayout.setBackgroundColor(0xCCCC0000);*/
+			view.setText(display);
 		} else
 		{
-			view.setText("This room is currently free");
-			// mainLayout.setBackgroundColor(Color.BLUE);
+			view.setText(view.getResources().getString(R.string.The_room_is_currently_free));
+			
 		}
 	}
 	

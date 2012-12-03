@@ -1,8 +1,5 @@
 package com.example.projectv1;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ClassBooking {
 	private String uid;
@@ -11,7 +8,6 @@ public class ClassBooking {
 	private String endTime;
 	private String url;
 
-	private Date date;
 
 	public ClassBooking(String uid, String summary, String startTime,
 			String endTime, String url) {

@@ -49,7 +49,8 @@ import android.widget.TextView;
 import com.example.projectv1.timeline.TimelineImageView;
 
 public class MainActivity extends Activity {
-	// Create our linkedlist of class bookings
+	
+	// Create our linkedList of class bookings
 	ArrayList<ClassBooking> cb = new ArrayList<ClassBooking>();
 
 	String language;
@@ -94,7 +95,7 @@ public class MainActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		// initialise preferences
+		// initialize preferences
 		
 		// create alarm to start device at predefined time next day
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
@@ -104,7 +105,7 @@ public class MainActivity extends Activity {
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
 
-		content.setText("Getting data");
+		content.setText(getResources().getString(R.string.Starting));
 		fiveMin = new FiveMinRefresh(cb, content);
 		fiveMin.execute();
 
@@ -145,7 +146,7 @@ public class MainActivity extends Activity {
 					 */
 					String summary="", start="", end="", url="";
 					
-					for(ClassBooking key:cb){
+					for(ClassBooking key:cb){					// get infor and send it to a new activity
 						if(key.getUID().equals(class_id)){
 							
 							summary = key.getSummary();
@@ -179,7 +180,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	public void setLanguage(String lang) {
+	public void setLanguage(String lang) {									// set the localisation
 		Resources standardResources = getBaseContext().getResources();
 		AssetManager assets = standardResources.getAssets();
 		DisplayMetrics metrics = standardResources.getDisplayMetrics();

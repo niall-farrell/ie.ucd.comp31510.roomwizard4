@@ -7,15 +7,15 @@ import android.app.Activity;
 import android.content.Intent;
 
 
-public class Menu extends Activity {
+public class Menu extends Activity {	
 
-	//OneMinTimeout timer = new OneMinTimeout(this);
+	OneMinTimeout timer = new OneMinTimeout(this);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
-	//	timer.startTimer();
+		timer.startTimer();
 	}
 
 
@@ -33,7 +33,7 @@ public class Menu extends Activity {
 			
 		case R.id.book_room:
 			
-		//	timer.killThread();
+			//timer.killThread();
 			Intent bookRoom = new Intent("com.project.ADDBOOKING");
 			startActivity(bookRoom);
 			
@@ -41,12 +41,29 @@ public class Menu extends Activity {
 			
 		case R.id.preferences:
 			
-			//timer.killThread();
+			timer.killThread();
 			Intent promptPass = new Intent("android.intent.action.PASS");
 			startActivity(promptPass);
 			
 			break;
 		}
+	}
+
+
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+
+
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		timer.startTimer();
 	}
 
 

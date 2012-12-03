@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class Add_booking extends Activity {
     
-	//String url="dummy url";
+
 	//private OneMinTimeout timer = new OneMinTimeout(this);
 	
 	@Override

@@ -4,15 +4,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
-// removed this line from AndroidManifest.xml and preferences work     android:permission="PrefsPermission"
 
 
 public class Preferences extends PreferenceActivity {
@@ -20,20 +16,19 @@ public class Preferences extends PreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {       
         super.onCreate(savedInstanceState);       
-        addPreferencesFromResource(R.xml.preferences);       
         
         // must call this method to check password before  displaying activity
         checkPassword();
-
-//Go back a screen
+        
+        addPreferencesFromResource(R.xml.preferences);       
+        
+        //Go back a screen
         Preference button = (Preference)getPreferenceManager().findPreference("backButtons");      
         
         button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                         @Override
                         public boolean onPreferenceClick(Preference arg0) { 
-                            //Intent intent = new Intent();
-                            //intent.setClass(this,Menu.class);
-                            //startActivity(intent);
+                        	
                         	Log.v("back","button");
                 			Intent openMenu = new Intent("com.project.MENU");
                 			startActivity(openMenu);
@@ -43,7 +38,7 @@ public class Preferences extends PreferenceActivity {
                         }
                     });
 
-//Force refresh iCal
+        //Force refresh iCal
         Preference buttoniCal = (Preference)getPreferenceManager().findPreference("refresh");      
         
         buttoniCal.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -61,6 +56,13 @@ public class Preferences extends PreferenceActivity {
     }
      
     @Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		checkPassword();
+	}
+
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, 0, 0, "Show current settings");
         return super.onCreateOptionsMenu(menu);
@@ -76,7 +78,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
         return false;
     }
     
-    public void checkPassword()
+    public void checkPassword()		// compare submitted password correct one. Redirect back to password prompt if they don't match
     { 	
 		Bundle submitted = getIntent().getExtras();
 		long savedPass=0, submittedPass=-1;
@@ -96,41 +98,3 @@ public boolean onOptionsItemSelected(MenuItem item) {
 		} 
     } 
 }
-/*
-public class Preferences extends Activity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_preferences);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_preferences, menu);
-		return true;
-	}
-	public void buttonClick(View v)
-	{
-		switch(v.getId())
-		{
-		case R.id.back_from_prefs:
-						
-			finish();
-			
-			break;
-			
-		case R.id.update:
-			
-			// need to implement this
-			//
-			//
-			finish();
-			
-			break;
-			
-		}
-	}
-}
-*/
