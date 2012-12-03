@@ -78,7 +78,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
         return false;
     }
     
-    public void checkPassword()
+    public void checkPassword()		// compare submitted password correct one. Redirect back to password prompt if they don't match
     { 	
 		Bundle submitted = getIntent().getExtras();
 		long savedPass=0, submittedPass=-1;

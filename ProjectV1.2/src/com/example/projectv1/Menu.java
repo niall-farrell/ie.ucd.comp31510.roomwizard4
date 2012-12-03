@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 
-public class Menu extends Activity {
+public class Menu extends Activity {	
 
 	//OneMinTimeout timer = new OneMinTimeout(this);
 	

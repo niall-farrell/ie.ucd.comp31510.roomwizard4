@@ -117,7 +117,7 @@ public class MainActivity extends Activity {
 					 */
 					String summary="", start="", end="", url="";
 					
-					for(ClassBooking key:cb){
+					for(ClassBooking key:cb){					// get infor and send it to a new activity
 						if(key.getUID().equals(class_id)){
 							
 							summary = key.getSummary();
@@ -151,7 +151,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	public void setLanguage(String lang) {
+	public void setLanguage(String lang) {									// set the localisation
 		Resources standardResources = getBaseContext().getResources();
 		AssetManager assets = standardResources.getAssets();
 		DisplayMetrics metrics = standardResources.getDisplayMetrics();

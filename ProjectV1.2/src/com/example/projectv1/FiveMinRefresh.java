@@ -43,7 +43,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	
 
 	@Override
-	protected String doInBackground(String... params) {
+	protected String doInBackground(String... params) {		// wait 5 minutes and then calls onPostExecute
 	
 			try{
 				Thread.sleep(5 * 60 * 1000);	// 5 minutes * 60 seconds * 1000 milliseconds
@@ -53,7 +53,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		
 		return String.valueOf(count);
 	}
-	protected void onPostExecute(String result){
+	protected void onPostExecute(String result){		// update the display and then start the next thread to wait 5 more minutes 
 	
 		int index = Integer.valueOf(result);
 		
@@ -67,7 +67,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		count++;
 	}
 	
-	protected void onPreExecute(){
+	protected void onPreExecute(){		// executed before waiting. if this is the first time it is called then set the display now
 		if(count==0) {
 			setDisplay(0);
 		}

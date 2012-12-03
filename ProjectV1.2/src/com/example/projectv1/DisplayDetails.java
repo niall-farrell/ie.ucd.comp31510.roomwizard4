@@ -20,7 +20,7 @@ public class DisplayDetails extends Activity {
 		String uid = submitted.getString("uid");
 		String display;
 		
-		if(!uid.equals("")){
+		if(!uid.equals("")){		// display booking info unless uid == null
 			
 			String summary = submitted.getString("summary");
 			String start   = submitted.getString("start");

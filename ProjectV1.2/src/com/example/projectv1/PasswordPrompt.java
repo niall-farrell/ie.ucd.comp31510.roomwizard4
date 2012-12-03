@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
-public class PasswordPrompt extends Activity {
+public class PasswordPrompt extends Activity {		// prompt user to enter a password in order to access preferences activity
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
