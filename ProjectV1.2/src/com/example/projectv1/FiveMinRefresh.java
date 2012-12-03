@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -93,17 +95,20 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		// Check if room is currently occupied
 		if (now_cal.after(start_cal) && now_cal.before(end_cal)) {
 			occupied = true;
-			display = "Summary: " + summary + " \n" +
-					"Time: " + timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +
+			display = summary + " \n" +
+					 timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +
 							"URL: " + url + "\n";
 		}
+		
+
 		
 		if (occupied) {			
 			
 			view.setText(display);
 		} else
 		{
-			view.setText("This room is currently free");
+			view.setText(view.getResources().getString(R.string.The_room_is_currently_free));
+			
 		}
 	}
 	

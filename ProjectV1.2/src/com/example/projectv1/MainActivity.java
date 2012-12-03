@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
 
-		content.setText("Getting data");
+		content.setText(getResources().getString(R.string.Starting));
 		fiveMin = new FiveMinRefresh(cb, content);
 		fiveMin.execute();
 

@@ -27,14 +27,16 @@ public class DisplayDetails extends Activity {
 			String end     = submitted.getString("end");
 			String url     = submitted.getString("url");
 			
-			display = "Summary: " + summary + " \n" +
-					"Time: " + start + " - " + end + " \n" +
+			display = summary + " \n" +
+					 start + " - " + end + " \n" +
 							"URL: " + url + "\n";
+			content.setText(display);
 		}
 		else{
-			display = "The room is not occupied at that time"; 
+			 
+			content.setText(content.getResources().getString(R.string.roomFreeAtThatTime));
 		}
-		content.setText(display);
+		
 	}
 
 	@Override
