@@ -13,9 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="100dp"
         android:textSize="25dp"
+     	android:layout_centerInParent="true"
+        android:shadowRadius="5.5"
         android:textColor="#000" />
 
     <ImageView
@@ -40,9 +43,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/menu"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="10dp"
         android:text="@string/time"
         android:textSize="20dp"
         android:textColor="#000" />
@@ -51,10 +54,11 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_marginTop="10dp"
+		android:layout_below="@+id/logo"
         android:textColor="#000"
         android:layout_marginRight="5dp"
-        android:layout_below="@+id/digitalClock1"
         android:textSize="20dp" />
 
     <Button
