@@ -13,8 +13,10 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,17 +32,29 @@ public class Add_booking extends Activity {
 	//	timer.startTimer();
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);   
-		String url = preferences.getString("url", "www.ucd.ie");
+		String url = preferences.getString("urlNewBooking", "www.ucd.ie");
 		
 		setContentView(R.layout.activity_add_booking);
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.add_url);	
 		content.setText(url);
 		
-		
-		  
 		ImageView qrcodeImage = (ImageView) findViewById(R.id.qrcode);
 	    qrcodeImage.setImageBitmap(generateQrcode(url));
+	    
+	    Typeface qs1=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.ttf");
+		Typeface qs2=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.ttf");
+		 
+		Button back = new Button(this);
+		back=(Button)findViewById(R.id.back_from_add);
+		back.setTypeface(qs1);
+		
+		TextView desc = new TextView(this);
+	    desc=(TextView)findViewById(R.id.add_greeting);
+	    desc.setTypeface(qs2);
+	    
+		content.setTypeface(qs2);
+
 	}
 
 	@Override

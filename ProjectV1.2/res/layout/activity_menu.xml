@@ -2,34 +2,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu"
-    android:keepScreenOn="true" >
-
-    <TextView
-        android:id="@+id/menu_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="62dp"
-        android:layout_marginTop="71dp"
-        android:text="@string/menu_message" />
-
+    android:background="@drawable/background"
+    android:keepScreenOn="true"
+    tools:context=".Menu" >
+	
     <Button
         android:id="@+id/book_room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/menu_message"
         android:layout_marginLeft="18dp"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="10dp"
         android:text="@string/add_booking"
         android:onClick="buttonClick" />
 
     <Button
         android:id="@+id/preferences"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"     
+        android:layout_alignParentRight="true"    
         android:layout_alignBaseline="@+id/book_room"
         android:layout_alignBottom="@+id/book_room"
         android:layout_alignRight="@+id/back_from_menu"
@@ -40,11 +31,29 @@
         android:id="@+id/back_from_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/preferences"
         android:layout_marginBottom="18dp"
         android:layout_marginRight="15dp"
         android:text="@string/back"
         android:onClick="buttonClick" />
 
+<!--  
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_above="@+id/preferences"
+        android:layout_alignLeft="@+id/book_room"
+        android:src="@drawable/calendar" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/preferences"
+        android:layout_marginRight="22dp"
+        android:src="@drawable/locked" />
+-->
 </RelativeLayout>

@@ -39,10 +39,11 @@
     <string name="EnterFinishTime">Select Finish Time</string>
     <string name="SendReports">Send Reports</string>
     <string name="Enableordisablesendreports">Enable or disable send reports</string>
-    <string name="title_activity_display_details">DisplayDetails</string>
+    <string name="title_activity_display_details">Display Details</string>
     <string name="passwordNotSet">No password has been set. The default value is \'default\'. Please use the preferences to set a password.</string>
-    <string name="The_room_is_currently_free">The room is currently free</string>
+    <string name="The_room_is_currently_free">The room is currently free.</string>
     <string name="Starting">Starting</string>
     <string name="roomFreeAtThatTime">The room is free at that time.</string>
+    <string name="booking_desc">Please scan the QR code provided</string>
 
 </resources>

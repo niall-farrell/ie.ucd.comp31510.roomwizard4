@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
+    android:background="@drawable/background"
     tools:context=".DisplayDetails" >
 
     <TextView
@@ -11,10 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="49dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="100dp"
         android:textColor="#000"
-        android:textSize="20sp" />
+        android:layout_centerInParent="true"
+        android:textSize="25dp" />
+        
 
     <Button
         android:id="@+id/back_from_details"
@@ -24,16 +28,20 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="18dp"
         android:layout_marginRight="15dp"
+        style="?android:attr/buttonStyleSmall"
         android:onClick="buttonClick"
+        android:textSize="10dp"
         android:text="@string/back" />
 
-    <DigitalClock
-        android:id="@+id/digitalClock2"
+   <DigitalClock
+        android:id="@+id/digitalClock1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/back_from_details"
-        android:layout_alignTop="@+id/detailsContent"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
         android:text="@string/time"
+        android:textSize="20dp"
         android:textColor="#000" />
-
+    
 </RelativeLayout>

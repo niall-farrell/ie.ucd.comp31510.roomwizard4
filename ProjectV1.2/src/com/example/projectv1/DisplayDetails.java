@@ -2,8 +2,11 @@ package com.example.projectv1;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DigitalClock;
 import android.widget.TextView;
 
 public class DisplayDetails extends Activity {
@@ -15,11 +18,26 @@ public class DisplayDetails extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_details);
 		
+		Typeface qs1=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.ttf");
+		Typeface qs2=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.ttf");
+		 
 		timer.startTimer();
 		
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.detailsContent);
 
+		content.setTypeface(qs2);
+		
+		DigitalClock clock = new DigitalClock(this);
+		clock = (DigitalClock)findViewById(R.id.digitalClock1);		 
+
+		clock.setTypeface(qs2);
+		
+		Button back = new Button (this);
+		back = (Button)findViewById(R.id.back_from_details);
+
+		back.setTypeface(qs1);
+		
 		Bundle submitted = getIntent().getExtras();
 		String uid = submitted.getString("uid");
 		String display;
