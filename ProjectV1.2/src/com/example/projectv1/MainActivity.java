@@ -248,8 +248,12 @@ public class MainActivity extends Activity {
 		String url = "";
 		String organizer = "";
 		URL add = null;
+		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);   
+		String calurl = preferences.getString("urliCalendar", "www.ucd.ie");
+		
 		try {
-			add = new URL("http://www.chartspms.com/android/calendar.ics");
+			add = new URL(calurl);
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
