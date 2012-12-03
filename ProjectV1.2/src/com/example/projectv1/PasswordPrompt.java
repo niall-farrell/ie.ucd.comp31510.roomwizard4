@@ -1,7 +1,6 @@
 package com.example.projectv1;
 
 
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -33,9 +32,6 @@ public class PasswordPrompt extends Activity {
 			TextView pass = (TextView) findViewById(R.id.ETpassword);
 			long password = pass.getText().toString().hashCode();
 			
-//			Intent passPrompt = new Intent("android.intent.action.PREFERENCES");
-//			passPrompt.putExtra("submitted_pass", password);
-//			startActivity(passPrompt);
 
 			Log.v("PasswordPrompt","before startActivity");
 				

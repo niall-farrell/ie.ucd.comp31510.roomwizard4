@@ -44,7 +44,8 @@ import android.widget.TextView;
 import com.example.projectv1.timeline.TimelineImageView;
 
 public class MainActivity extends Activity {
-	// Create our linkedlist of class bookings
+	
+	// Create our linkedList of class bookings
 	ArrayList<ClassBooking> cb = new ArrayList<ClassBooking>();
 
 	String language;
@@ -65,7 +66,7 @@ public class MainActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		// initialise preferences
+		// initialize preferences
 		
 		// create alarm to start device at predefined time next day
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);

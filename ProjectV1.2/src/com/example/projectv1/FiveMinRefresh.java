@@ -6,7 +6,7 @@
 //	It is also given a TextView to display the results in.
 //	A new thread is created when FiveMinRefresh.execute() is called. (build in method of AsynckTask class.)
 //	It first runs onPreExecute, which currently sets initial values the first time it is run.
-//	Then it calls doInBackground, which makes it wait. This is set for 1 second for debugging, will eventually be set to 5 minutes.
+//	Then it calls doInBackground, which makes it wait.
 //  Finally, the onPostExecute method is called, which updates the display and then creates a new instance of the FiveMinRefresh
 //  class to wait 5 more minutes and do the next update.
 
@@ -31,10 +31,6 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	private static int size;
 	private static ArrayList<ClassBooking> cb;
 	private static TextView view;
-	private static Calendar c = Calendar.getInstance();
-	private static int date = c.get(Calendar.DATE);
-	private static int month = c.get(Calendar.MONTH);
-	private static int year = c.get(Calendar.YEAR);	
 	private static Boolean occupied = false;
 	private static String display;
 	
@@ -50,7 +46,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	protected String doInBackground(String... params) {
 	
 			try{
-				Thread.sleep(2000);
+				Thread.sleep(5 * 60 * 1000);	// 5 minutes * 60 seconds * 1000 milliseconds
 			}catch(InterruptedException e){
 				e.printStackTrace();
 			}
@@ -102,19 +98,12 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 							"URL: " + url + "\n";
 		}
 		
-		if (occupied) {
-			view.setText(display);
+		if (occupied) {			
 			
-			/*view.setText("Organizer's name \n" +
-					"Event name \n" +
-					"Booking time (from - to) \n" +
-					"Current date: " + date + "/" + month + "/" + year + ".\n" +
-					"Room number \n"+ display);
-			// mainLayout.setBackgroundColor(0xCCCC0000);*/
+			view.setText(display);
 		} else
 		{
 			view.setText("This room is currently free");
-			// mainLayout.setBackgroundColor(Color.BLUE);
 		}
 	}
 	
