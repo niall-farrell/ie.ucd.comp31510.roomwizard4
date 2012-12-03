@@ -3,6 +3,8 @@ package com.example.projectv1;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -32,6 +34,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
@@ -39,6 +42,8 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
+import android.widget.DigitalClock;
 import android.widget.TextView;
 
 import com.example.projectv1.timeline.TimelineImageView;
@@ -55,6 +60,30 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		 Button menu=(Button)findViewById(R.id.menu);
+		 Button eng=(Button)findViewById(R.id.english);
+		 Button ie=(Button)findViewById(R.id.gaeilge);
+		 TextView status=(TextView)findViewById(R.id.content);
+		 DigitalClock clock=(DigitalClock)findViewById(R.id.digitalClock1);		 
+		 TextView currentdate=(TextView)findViewById(R.id.date);
+
+		 Typeface qs1=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.ttf");
+		 Typeface qs2=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.ttf");
+
+		 menu.setTypeface(qs1);
+		 eng.setTypeface(qs1);
+		 ie.setTypeface(qs1);
+		 status.setTypeface(qs2);
+		 clock.setTypeface(qs2);
+		 currentdate.setTypeface(qs2);
+		 
+		 
+		 Date d=new Date();
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("EE, MMM dd yyyy");
+		 String formattedDate = dateFormat.format(d);
+		 currentdate.setText(formattedDate);
+		 
+		
 		try {
 			cb = getClassBooking();
 		} catch (IOException e) {

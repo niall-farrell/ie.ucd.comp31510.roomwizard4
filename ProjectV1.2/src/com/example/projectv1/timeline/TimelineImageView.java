@@ -17,6 +17,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
@@ -39,8 +40,16 @@ public class TimelineImageView extends ImageView{
 		int height = canvas.getHeight();
 		int width = canvas.getWidth();
 		
-		p.setColor(Color.rgb(220, 65, 65));
-    	Map<String, Integer[]> draw_map = createDrawMap(class_array, width);
+		Paint shadowPaint = new Paint();
+        shadowPaint.setAntiAlias(true);
+        shadowPaint.setTypeface(Typeface.SANS_SERIF);
+        shadowPaint.setColor(Color.BLACK);
+        shadowPaint.setTextSize(15.0f);
+        
+		
+		
+        p.setColor(0xFF00427b);
+        Map<String, Integer[]> draw_map = createDrawMap(class_array, width);
 		for (Map.Entry<String, Integer[]> entry : draw_map.entrySet()) {
 			canvas.drawRect(entry.getValue()[0], 0, entry.getValue()[1], height, p);
 		}
@@ -50,7 +59,7 @@ public class TimelineImageView extends ImageView{
 		int num_hours = 12;
 		for (int i=0; i<num_hours+1; i++) {
 			canvas.drawLine((i*60) * (width / (num_hours*60)), 0, (i*60) * (width / (num_hours*60)), height, p);
-			canvas.drawText(8+i+":00", (i*60) * (width / (num_hours*60)), 10, p);
+			canvas.drawText(8+i+":00", (i*60) * (width / (num_hours*60))+12, 15, shadowPaint);
 		}
 	}
 	

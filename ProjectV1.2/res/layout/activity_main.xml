@@ -6,70 +6,89 @@
     android:background="@drawable/background"
     android:keepScreenOn="true"
     tools:context=".MainActivity" >
-    
+
     <TextView
         android:id="@+id/content"
-        android:textColor="#000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="49dp"
-        android:layout_marginTop="53dp"
-        android:textSize="20sp" />
-    
-        <DigitalClock
-        android:id="@+id/digitalClock1"
-        android:textColor="#000"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/logo"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="28dp"
-        android:text="@string/time" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="70dp"
+        android:textSize="25dp"
+        android:textColor="#000" />
 
-    <Button
-        android:id="@+id/menu"
-        android:layout_width="80dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/digitalClock1"
-        android:onClick="buttonClick"
-        android:background="@drawable/menubtn" />
-
-    <Button
-        android:id="@+id/gaeilge"
-        android:layout_width="80dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="27dp"
-        android:layout_below="@+id/menu"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="18dp"
-        android:onClick="buttonClick"
-        android:background="@drawable/irishbtn" />
-
-    <Button
-        android:id="@+id/english"
-        android:layout_width="80dp"
-        android:layout_height="27dp"
-        android:layout_below="@+id/gaeilge"
-        android:layout_alignParentRight="true"
-        android:onClick="buttonClick"
-        android:background="@drawable/engbtn" />
-    
-     <ImageView
+    <ImageView
         android:id="@+id/logo"
-        android:layout_width="150dp"
-        android:layout_height="23dp"
+        android:layout_width="170dp"
+        android:layout_height="26dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:src="@drawable/roomwizard" />
 
     <com.example.projectv1.timeline.TimelineImageView
         android:id="@+id/timeline"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginBottom="0dp" />
-       
+
+    
+    <DigitalClock
+        android:id="@+id/digitalClock1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/time"
+        android:textSize="20dp"
+        android:textColor="#000" />
+    
+     <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="#000"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/digitalClock1"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/english"
+        android:layout_marginTop="3dp"
+        android:layout_width="70dp"
+        android:layout_height="25dp"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="114dp"
+        android:layout_toRightOf="@+id/logo"
+        android:text="@string/English"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/gaeilge"
+        android:layout_marginTop="3dp"
+        android:layout_width="70dp"
+        android:layout_height="25dp"       
+        style="?android:attr/buttonStyleSmall"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/english"
+        android:text="@string/Gaeilge"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/menu"
+        android:layout_marginTop="3dp"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="70dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:onClick="buttonClick"
+        android:text="@string/menu"
+        android:textSize="10dp" />
+
 </RelativeLayout>
