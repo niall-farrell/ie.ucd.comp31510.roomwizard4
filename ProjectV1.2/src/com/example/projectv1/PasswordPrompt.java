@@ -6,9 +6,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class PasswordPrompt extends Activity {		// prompt user to enter a password in order to access preferences activity
@@ -18,8 +20,21 @@ public class PasswordPrompt extends Activity {		// prompt user to enter a passwo
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_password_prompt);
 		
+		Typeface qs1=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.ttf");
+		Typeface qs2=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.ttf");
+		 
+		
 		TextView prompt = new TextView(this);
 		prompt = (TextView) findViewById(R.id.passwordPrompt);
+		prompt.setTypeface(qs2);
+		
+		Button back = new Button(this);
+		back = (Button) findViewById(R.id.backFromPrompt);
+		back.setTypeface(qs1);
+		
+		Button pass = new Button(this);
+		pass = (Button) findViewById(R.id.submitPass);
+		pass.setTypeface(qs1);
 		
 		if(isPasswordSet())
 		{
@@ -40,7 +55,7 @@ public class PasswordPrompt extends Activity {		// prompt user to enter a passwo
 	{
 		switch(v.getId())
 		{
-		case R.id.sumitPass:
+		case R.id.submitPass:
 			
 			TextView pass = (TextView) findViewById(R.id.ETpassword);
 			long password = pass.getText().toString().hashCode();
