@@ -29,8 +29,8 @@ class OneMinTimeout
 	public void startTimer(){
 		t =  new Thread(new Runnable()  {
 			public void run() {
-				try{
-					Thread.sleep(2000);			// must change this to 1 minute when the class has been fully implemented.
+				try{							// 1 minute * 60 seconds * 1000 milliseconds
+					Thread.sleep(1 * 60 * 1000);			// must change this to 1 minute when the class has been fully implemented.
 					activity.finish();			// finish the activity if the thread reaches this point
 				}catch(InterruptedException e){
 					e.printStackTrace();

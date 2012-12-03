@@ -8,10 +8,6 @@
         android:minSdkVersion="9"
         android:targetSdkVersion="9" />
 
-    <permission
-        android:name="PrefsPermission"
-        android:label="password permission"
-        android:protectionLevel="normal" />
 
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.INTERNET" />

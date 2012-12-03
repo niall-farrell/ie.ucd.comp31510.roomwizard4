@@ -8,10 +8,14 @@ import android.widget.TextView;
 
 public class DisplayDetails extends Activity {
 
+	private OneMinTimeout timer = new OneMinTimeout(this);
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_details);
+		
+		timer.startTimer();
 		
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.detailsContent);
@@ -51,6 +55,7 @@ public class DisplayDetails extends Activity {
 		{
 		case R.id.back_from_details:
 			finish();
+			timer.killThread();
 			break;
 		}
 	}
