@@ -30,7 +30,7 @@
 	            android:summary="@string/EnterURLforiCalendar"
 	            android:dialogTitle="@string/URLforiCalendar"
 	            android:dialogMessage="@string/EnterURLforiCalendar"   
-	            android:defaultValue="Default url" />
+	            android:defaultValue="http://www.chartspms.com/android/calendar.ics" />
 
 	        <EditTextPreference
 	            android:key="timeForRefresh"

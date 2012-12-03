@@ -1,12 +1,13 @@
 package com.example.projectv1;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -15,6 +16,7 @@ import java.util.Map;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.Parameter;
 import net.fortuna.ical4j.model.Property;
 
 import org.apache.http.HttpResponse;
@@ -49,8 +51,7 @@ import android.widget.TextView;
 import com.example.projectv1.timeline.TimelineImageView;
 
 public class MainActivity extends Activity {
-	
-	// Create our linkedList of class bookings
+	// Create our linkedlist of class bookings
 	ArrayList<ClassBooking> cb = new ArrayList<ClassBooking>();
 
 	String language;
@@ -83,7 +84,7 @@ public class MainActivity extends Activity {
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("EE, MMM dd yyyy");
 		 String formattedDate = dateFormat.format(d);
 		 currentdate.setText(formattedDate);
-		 
+		
 		
 		try {
 			cb = getClassBooking();
@@ -95,7 +96,7 @@ public class MainActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		// initialize preferences
+		// initialise preferences
 		
 		// create alarm to start device at predefined time next day
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
@@ -105,7 +106,7 @@ public class MainActivity extends Activity {
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
 
-		content.setText(getResources().getString(R.string.Starting));
+		content.setText("Getting data");
 		fiveMin = new FiveMinRefresh(cb, content);
 		fiveMin.execute();
 
@@ -144,15 +145,16 @@ public class MainActivity extends Activity {
 					 * "You clicked at: " + positionX + "\n" + message,
 					 * Toast.LENGTH_SHORT).show();
 					 */
-					String summary="", start="", end="", url="";
+					String summary="", start="", end="", url="",organizer="";
 					
-					for(ClassBooking key:cb){					// get infor and send it to a new activity
+					for(ClassBooking key:cb){
 						if(key.getUID().equals(class_id)){
 							
 							summary = key.getSummary();
 							start   = key.getStartTime();
 							end     = key.getEndTime();
 							url     = key.getURL();
+							organizer= key.getOrganizer();
 							break;
 						}
 					}
@@ -162,6 +164,7 @@ public class MainActivity extends Activity {
 					openDetails.putExtra("start", start);
 					openDetails.putExtra("end", end);
 					openDetails.putExtra("url", url);
+					openDetails.putExtra("organizer", organizer);
 					startActivity(openDetails);
 					return true;
 				}
@@ -180,7 +183,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	public void setLanguage(String lang) {									// set the localisation
+	public void setLanguage(String lang) {
 		Resources standardResources = getBaseContext().getResources();
 		AssetManager assets = standardResources.getAssets();
 		DisplayMetrics metrics = standardResources.getDisplayMetrics();
@@ -243,6 +246,7 @@ public class MainActivity extends Activity {
 		String st = "";
 		String et = "";
 		String url = "";
+		String organizer = "";
 		URL add = null;
 		try {
 			add = new URL("http://www.chartspms.com/android/calendar.ics");
@@ -255,7 +259,9 @@ public class MainActivity extends Activity {
 		// CalendarBuilder builder = new CalendarBuilder();
 
 		calendar = builder.build(add.openStream());
-
+		//calendar = builder.build(getResources().openRawResource(0) .openStream());
+		//InputStream inputStream = getResources().openRawResource(R.raw.calendar);
+		//calendar = builder.build(inputStream);
 		if (calendar != null) {
 
 			// Iterating over a Calendar
@@ -283,8 +289,14 @@ public class MainActivity extends Activity {
 					if (property.getName().equals("URL")) {
 						url = property.getValue();
 					}
+					if (property.getName().equals("ORGANIZER")) {
+						organizer= property.toString().substring(13);
+						int end = organizer.indexOf(":");
+						organizer = organizer.substring(0, end);
+					}
+				
 				}
-				cb.add(new ClassBooking(uid, summary, st, et, url));
+				cb.add(new ClassBooking(uid, summary, st, et, url,organizer));
 			}
 		}
 		for (ClassBooking booking : cb) {

@@ -1,5 +1,8 @@
 package com.example.projectv1;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ClassBooking {
 	private String uid;
@@ -7,15 +10,24 @@ public class ClassBooking {
 	private String startTime;
 	private String endTime;
 	private String url;
-
+	private String organizer;
+	private Date date;
 
 	public ClassBooking(String uid, String summary, String startTime,
-			String endTime, String url) {
+			String endTime, String url,String organizer) {
 		this.uid = uid;
 		this.summary = summary;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.url = url;
+		this.organizer = organizer;
+	}
+	public String getOrganizer() {
+		return organizer;
+	}
+
+	public void setOrganizer(final String organizerl) {
+		this.organizer = organizer;
 	}
 
 	public String getUID() {
