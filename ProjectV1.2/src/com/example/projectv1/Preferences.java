@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 // removed this line from AndroidManifest.xml and preferences work     android:permission="PrefsPermission"
 
@@ -20,12 +21,15 @@ public class Preferences extends PreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {       
         super.onCreate(savedInstanceState);       
-        addPreferencesFromResource(R.xml.preferences);       
         
-        // must call this method to check password before  displaying activity
+     // must call this method to check password before  displaying activity
         checkPassword();
-
-//Go back a screen
+        
+        addPreferencesFromResource(R.xml.preferences);       
+       
+       // PreferenceActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        
+        //Go back a screen
         Preference button = (Preference)getPreferenceManager().findPreference("backButtons");      
         
         button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -61,6 +65,13 @@ public class Preferences extends PreferenceActivity {
     }
      
     @Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		checkPassword();
+	}
+
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, 0, 0, "Show current settings");
         return super.onCreateOptionsMenu(menu);

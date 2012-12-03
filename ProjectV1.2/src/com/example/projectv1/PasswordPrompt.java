@@ -45,6 +45,11 @@ public class PasswordPrompt extends Activity {
 		      Log.v("PasswordPrompt","after startActivity");
 			
 			break;
+			
+		case R.id.backFromPrompt:
+			
+			finish();
+			break;
 		}
 	}
 }
