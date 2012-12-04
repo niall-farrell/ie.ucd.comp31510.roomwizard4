@@ -67,6 +67,7 @@
         android:layout_height="wrap_content"       
         style="?android:attr/buttonStyleSmall"
         android:layout_toLeftOf="@+id/menu"
+         android:onClick="buttonClick"
         android:text="@string/English" />
 
     <Button
@@ -76,6 +77,7 @@
         android:layout_height="wrap_content"       
         style="?android:attr/buttonStyleSmall"
         android:layout_toLeftOf="@+id/english"
+         android:onClick="buttonClick"
         android:text="@string/Gaeilge" />
 
     <Button

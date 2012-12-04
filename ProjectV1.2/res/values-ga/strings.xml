@@ -41,5 +41,6 @@
     <string name="passwordNotSet">Níl focal faire curtha i mbun. Is \'default\' an luach loichte.</string>
     <string name="Pressback">Brúigh le dhul ar ais</string>
     <string name="PressBackScreen">Brúigh le dhul ar ais</string>
+    <string name="booking_desc">Úsáid an cód QR seo</string>
      
 </resources>
