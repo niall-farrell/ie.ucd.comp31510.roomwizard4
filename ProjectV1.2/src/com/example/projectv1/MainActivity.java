@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
 		content = (TextView) findViewById(R.id.content);
 
 		//content.setText("Getting data");
-		fiveMin = new FiveMinRefresh(cb, content);
+		fiveMin = new FiveMinRefresh(cb, content, this);
 		fiveMin.execute();
 
 		// Timeline Listener.
@@ -199,7 +199,7 @@ public class MainActivity extends Activity {
 				standardResources.getConfiguration());
 		config.locale = new Locale(lang);
 		Resources defaultResources = new Resources(assets, metrics, config);
-		fiveMin = new FiveMinRefresh(cb, content);
+		fiveMin = new FiveMinRefresh(cb, content, this);
 		fiveMin.execute();
 	}
 

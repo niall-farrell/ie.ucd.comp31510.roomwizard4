@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -37,12 +38,14 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	private static TextView view;
 	private static Boolean occupied = false;
 	private static String display;
+	private static Activity activity;
 	
-	FiveMinRefresh(ArrayList<ClassBooking> inCb, TextView inView)
+	FiveMinRefresh(ArrayList<ClassBooking> inCb, TextView inView, Activity act)
 	{
 		FiveMinRefresh.cb= inCb;
 		FiveMinRefresh.view = inView;
 		FiveMinRefresh.size=cb.size();
+		FiveMinRefresh.activity = act;
 	}
 	
 
@@ -66,7 +69,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		
 		if (count<size) {
 			setDisplay(index);
-			new FiveMinRefresh(cb, view).execute();
+			new FiveMinRefresh(cb, view, activity).execute();
 		}
 		count++;
 	}
@@ -93,7 +96,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		Calendar end_cal = iCalToTimeToday(end);
 		Calendar now_cal = Calendar.getInstance(); 
 			
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);   
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);   
 		
 		String room = preferences.getString("room", "Room X");
 		
