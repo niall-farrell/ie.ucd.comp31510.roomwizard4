@@ -90,7 +90,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		Calendar end_cal = iCalToTimeToday(end);
 		Calendar now_cal = Calendar.getInstance(); 
 		
-		SimpleDateFormat timeFormat = new SimpleDateFormat("K:mm a");
+		SimpleDateFormat timeFormat = new SimpleDateFormat("k:mm a");
 		
 		// Check if room is currently occupied
 		if (now_cal.after(start_cal) && now_cal.before(end_cal)) {

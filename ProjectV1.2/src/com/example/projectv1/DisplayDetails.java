@@ -1,5 +1,11 @@
 package com.example.projectv1;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.Typeface;
@@ -48,10 +54,16 @@ public class DisplayDetails extends Activity {
 			String start   = submitted.getString("start");
 			String end     = submitted.getString("end");
 			String url     = submitted.getString("url");
+
 			
+			Calendar start_cal = iCalToTimeToday(start);
+			Calendar end_cal = iCalToTimeToday(end);
+			
+			
+			SimpleDateFormat timeFormat = new SimpleDateFormat("k:mm a");
+
 			display = summary + " \n" +
-					 start + " - " + end + " \n" +
-							"URL: " + url + "\n";
+					timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +							"URL: " + url + "\n";
 			content.setText(display);
 		}
 		else{
@@ -61,6 +73,28 @@ public class DisplayDetails extends Activity {
 		
 	}
 
+	public static Calendar iCalToTimeToday(String iCalText) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+		Date date = null;
+		
+		try {
+			date = format.parse(iCalText);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block  
+			e1.printStackTrace();  
+		}
+		
+		// Set calendar to given time
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		
+		// Set calendar to today's date
+		Calendar now = Calendar.getInstance();
+		cal.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+		
+		return cal;
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
