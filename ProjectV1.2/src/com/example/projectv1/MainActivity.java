@@ -85,16 +85,11 @@ public class MainActivity extends Activity {
 		 String formattedDate = dateFormat.format(d);
 		 currentdate.setText(formattedDate);
 		
-		
-		try {
-			cb = getClassBooking();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//***************
+		 
+		 setCB();	// setting cb from a public method 
+		 
+		 //************
 		
 		// initialise preferences
 		
@@ -106,7 +101,7 @@ public class MainActivity extends Activity {
 		TextView content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
 
-		content.setText("Getting data");
+		//content.setText("Getting data");
 		fiveMin = new FiveMinRefresh(cb, content);
 		fiveMin.execute();
 
@@ -176,6 +171,19 @@ public class MainActivity extends Activity {
 
 	}
 
+	public void setCB()
+	{
+		try {
+			cb = getClassBooking();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

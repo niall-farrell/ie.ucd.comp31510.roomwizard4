@@ -49,8 +49,8 @@ public class Preferences extends PreferenceActivity {
                         @Override
                         public boolean onPreferenceClick(Preference arg0) {
                         	//Code goes here to force iCal refresh
-                			//Intent openMenu = new Intent("com.project.MENU");
-                			//startActivity(openMenu);
+                			//Intent openMain = new Intent("android.intent.action.MAIN");
+                			//startActivity(openMain);
 
                             //finish();
          	                            return true;
