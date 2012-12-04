@@ -12,7 +12,7 @@ import android.graphics.Typeface;
 
 public class Menu extends Activity {	
 
-	OneMinTimeout timer = new OneMinTimeout(this);
+	Timeout timer = new Timeout(this);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +45,14 @@ public class Menu extends Activity {
 		{
 		case R.id.back_from_menu:
 			
-		//	timer.killThread();
+		
 			finish();
 			
 			break;
 			
 		case R.id.book_room:
 			
-			//timer.killThread();
+		
 			Intent bookRoom = new Intent("com.project.ADDBOOKING");
 			startActivity(bookRoom);
 			
@@ -60,7 +60,7 @@ public class Menu extends Activity {
 			
 		case R.id.preferences:
 			
-			timer.killThread();
+			
 			Intent promptPass = new Intent("android.intent.action.PASS");
 			startActivity(promptPass);
 			
@@ -74,6 +74,7 @@ public class Menu extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		timer.cancel();
 	}
 
 
@@ -82,6 +83,7 @@ public class Menu extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		timer = new Timeout(this);
 		timer.startTimer();
 	}
 

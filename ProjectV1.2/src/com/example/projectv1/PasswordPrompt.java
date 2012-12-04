@@ -16,9 +16,14 @@ import android.widget.TextView;
 
 public class PasswordPrompt extends Activity {		// prompt user to enter a password in order to access preferences activity
 
+	Timeout timer = new Timeout(this);
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		timer.startTimer();
+		
 		setContentView(R.layout.activity_password_prompt);
 		
 		Typeface qs1=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.ttf");
@@ -57,8 +62,20 @@ public class PasswordPrompt extends Activity {		// prompt user to enter a passwo
 		EditText et = new EditText(this);
 		et = (EditText) findViewById(R.id.ETpassword);
 		et.setText("");
+		timer = new Timeout(this);
+		timer.startTimer();
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onPause()
+	 */
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		timer.cancel();
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

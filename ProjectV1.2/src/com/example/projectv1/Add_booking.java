@@ -23,13 +23,13 @@ import android.widget.TextView;
 public class Add_booking extends Activity {
     
 
-	//private OneMinTimeout timer = new OneMinTimeout(this);
+	Timeout timer = new Timeout(this);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-	//	timer.startTimer();
+		timer.startTimer();
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);   
 		String url = preferences.getString("urlNewBooking", "www.ucd.ie");
@@ -93,14 +93,15 @@ public class Add_booking extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-	//	timer.killThread();
+		timer.cancel();
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-	//	timer.startTimer();
+		timer = new Timeout(this);
+		timer.startTimer();
 	}
 
 	public void buttonClick(View v)
@@ -108,7 +109,7 @@ public class Add_booking extends Activity {
 		switch(v.getId())
 		{
 		case R.id.back_from_add:
-		//	timer.killThread();
+		
 			finish();			
 			break;			
 		}

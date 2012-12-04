@@ -13,12 +13,15 @@ import android.view.MenuItem;
 
 public class Preferences extends PreferenceActivity {
     
+	Timeout timer = new Timeout(this);
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {       
         super.onCreate(savedInstanceState);       
         
         // must call this method to check password before  displaying activity
         checkPassword();
+        timer.startTimer();
         
         addPreferencesFromResource(R.xml.preferences);       
         
@@ -60,6 +63,8 @@ public class Preferences extends PreferenceActivity {
 		// TODO Auto-generated method stub
 		super.onResume();
 		checkPassword();
+		timer = new Timeout(this);
+		timer.startTimer();
 	}
 
 	@Override
