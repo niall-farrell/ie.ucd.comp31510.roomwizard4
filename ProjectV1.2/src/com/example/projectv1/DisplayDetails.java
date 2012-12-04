@@ -54,7 +54,7 @@ public class DisplayDetails extends Activity {
 			String start   = submitted.getString("start");
 			String end     = submitted.getString("end");
 			String url     = submitted.getString("url");
-
+			String org     = submitted.getString("organizer");
 			
 			Calendar start_cal = iCalToTimeToday(start);
 			Calendar end_cal = iCalToTimeToday(end);
@@ -63,7 +63,8 @@ public class DisplayDetails extends Activity {
 			SimpleDateFormat timeFormat = new SimpleDateFormat("k:mm a");
 
 			display = summary + " \n" +
-					timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +							"URL: " + url + "\n";
+					timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +							
+					org + "\n";
 			content.setText(display);
 		}
 		else{

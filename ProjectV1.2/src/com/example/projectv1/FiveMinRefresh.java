@@ -85,6 +85,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		String summary = cb.get(index).getSummary();
 		String end = cb.get(index).getEndTime();
 		String url = cb.get(index).getURL();
+		String organizer = cb.get(index).getOrganizer();
 		
 		Calendar start_cal = iCalToTimeToday(start);
 		Calendar end_cal = iCalToTimeToday(end);
@@ -96,8 +97,8 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		if (now_cal.after(start_cal) && now_cal.before(end_cal)) {
 			occupied = true;
 			display = summary + " \n" +
-					 timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +
-							"URL: " + url + "\n";
+					  timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +
+				      organizer + "\n";
 		}
 		
 
