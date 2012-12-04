@@ -54,7 +54,7 @@ public class TimelineImageView extends ImageView{
 			canvas.drawRect(entry.getValue()[0], 0, entry.getValue()[1], height, p);
 		}
 		
-		// TODO - drawing temp hour marks
+		// Drawing hour marks
 		p.setColor(Color.BLACK);
 		int num_hours = 12;
 		for (int i=0; i<num_hours+1; i++) {

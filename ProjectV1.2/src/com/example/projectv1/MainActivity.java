@@ -115,7 +115,7 @@ public class MainActivity extends Activity {
 		fiveMin.execute();
 
 		// start thread to update iCal files
-		int refresh = Integer.valueOf(settings.getString("timeForRefresh", ""));
+		int refresh = Integer.valueOf(settings.getString("timeForRefresh", "15"));
 		updater = new CBupdate(cb, refresh, this);
 		updater.execute();
 		

@@ -64,9 +64,6 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 	
 		int index = Integer.valueOf(result);
 		
-		Log.v("count", count + "");
-		Log.v("size", size + "");
-		
 		if (count<size) {
 			setDisplay(index);
 			new FiveMinRefresh(cb, view, activity).execute();

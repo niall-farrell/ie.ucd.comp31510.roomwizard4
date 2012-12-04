@@ -49,10 +49,6 @@ class CBupdate extends AsyncTask <String, Void, String>
 		return String.valueOf(count);
 	}
 	protected void onPostExecute(String result){		
-	
-		
-		Log.v("count", count + "");
-		Log.v("size", size + "");
 		
 		if (count<size) {
 			setCB();
@@ -155,8 +151,8 @@ class CBupdate extends AsyncTask <String, Void, String>
 			 * Log.i("pab", message);
 			 **/
 
-			System.out.println("UID:" + booking.getUID() + "ST: "
-					+ booking.getStartTime() + "ET: " + booking.getEndTime());
+			// System.out.println("UID:" + booking.getUID() + "ST: "
+			//		+ booking.getStartTime() + "ET: " + booking.getEndTime());
 
 		}
 
