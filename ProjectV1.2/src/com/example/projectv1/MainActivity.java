@@ -1,7 +1,14 @@
 package com.example.projectv1;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -40,6 +47,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -252,8 +260,6 @@ public class MainActivity extends Activity {
 		return "";
 	}
 
-	// Calendar calendar = Calendars.load(new
-	// URL("http://ical4j.cvs.sourceforge.net/viewvc/*checkout*/ical4j/iCal4j/etc/samples/valid/Australian32Holidays.ics"));
 	public java.util.ArrayList<ClassBooking> getClassBooking()
 			throws IOException, ParserException {
 		String uid = "";
@@ -273,14 +279,24 @@ public class MainActivity extends Activity {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		net.fortuna.ical4j.model.Calendar calendar = new net.fortuna.ical4j.model.Calendar();
 		CalendarBuilder builder = new CalendarBuilder();
-		// CalendarBuilder builder = new CalendarBuilder();
+		if (add.openStream() != null) {
+			calendar = builder.build(add.openStream());
+			//Saves ics file to the internal memory
+			saveICSfile();
+		} 
+		//Should go to the backup copy of the ical folder 
+		else {
+			// convert String into InputStream
+			//also present is the readICSfile which reads the backup ical file
+			InputStream is = new ByteArrayInputStream(readICSfile().getBytes());
+			calendar = builder.build(is);
 
-		calendar = builder.build(add.openStream());
-		//calendar = builder.build(getResources().openRawResource(0) .openStream());
-		//InputStream inputStream = getResources().openRawResource(R.raw.calendar);
-		//calendar = builder.build(inputStream);
+		}
+
+
 		if (calendar != null) {
 
 			// Iterating over a Calendar
@@ -309,13 +325,13 @@ public class MainActivity extends Activity {
 						url = property.getValue();
 					}
 					if (property.getName().equals("ORGANIZER")) {
-						organizer= property.toString().substring(13);
+						organizer = property.toString().substring(13);
 						int end = organizer.indexOf(":");
 						organizer = organizer.substring(0, end);
 					}
-				
+
 				}
-				cb.add(new ClassBooking(uid, summary, st, et, url,organizer));
+				cb.add(new ClassBooking(uid, summary, st, et, url, organizer));
 			}
 		}
 		for (ClassBooking booking : cb) {
@@ -331,6 +347,93 @@ public class MainActivity extends Activity {
 		}
 
 		return cb;
+	}
+
+	public void saveICSfile() {
+
+		try {
+			// Create a URL for the desired page
+			URL url = new URL("http://www.chartspms.com/android/calendar.ics");
+
+			// Read all the text returned by the server
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					url.openStream()));
+			String str;
+
+			StringBuffer string = new StringBuffer();
+			while ((str = in.readLine()) != null) {
+				// str is one line of text; readLine() strips the newline
+				// character(s)
+				// Create a object of StringBuffer class
+
+				string.append(str + "\n");
+
+			}
+			String fileString = string.toString();
+			System.out.println("fileString: " + fileString);
+			FileOutputStream fOut = openFileOutput("calendar.ics",
+					MODE_WORLD_READABLE);
+			OutputStreamWriter osw = new OutputStreamWriter(fOut);
+			// Write the string to the file
+			osw.write(fileString);
+			/*
+			 * ensure that everything is really written out and close
+			 */
+			osw.flush();
+			osw.close();
+
+			in.close();
+			// Reading the file back...
+
+			/*
+			 * We have to use the openFileInput()-method the ActivityContext
+			 * provides. Again for security reasons with openFileInput(...)
+			 */
+
+			FileInputStream fIn = openFileInput("calendar.ics");
+			InputStreamReader isr = new InputStreamReader(fIn);
+
+			/*
+			 * Prepare a char-Array that will hold the chars we read back in.
+			 */
+			char[] inputBuffer = new char[fileString.length()];
+
+			// Fill the Buffer with data from the file
+			isr.read(inputBuffer);
+
+			// Transform the chars to a String
+			String readString = new String(inputBuffer);
+
+			// Check if we read back the same chars that we had written out
+			boolean isTheSame = fileString.equals(readString);
+
+			Log.i("File Reading stuff", "success = " + isTheSame);
+
+		} catch (MalformedURLException e) {
+		} catch (IOException e) {
+		}
+	}
+
+	public String readICSfile() {
+
+		int ch;
+		StringBuffer fileContent = new StringBuffer("");
+		FileInputStream fis;
+		try {
+			fis = openFileInput("calendar.ics");
+			try {
+				while ((ch = fis.read()) != -1)
+					fileContent.append((char) ch);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		String data = new String(fileContent);
+		return data;
+
 	}
 	
 	// creates AlarmManager object to restore device from standby at specified time
