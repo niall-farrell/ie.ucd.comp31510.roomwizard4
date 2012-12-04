@@ -53,10 +53,10 @@ import com.example.projectv1.timeline.TimelineImageView;
 public class MainActivity extends Activity {
 	// Create our linkedlist of class bookings
 	ArrayList<ClassBooking> cb = new ArrayList<ClassBooking>();
-
 	String language;
 	FiveMinRefresh fiveMin;
-
+	TextView content;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -98,7 +98,7 @@ public class MainActivity extends Activity {
         int startHour = Integer.parseInt(settings.getString("startTime", "8"));
 		createStartAlarm(startHour,0);
 
-		TextView content = new TextView(this);
+		content = new TextView(this);
 		content = (TextView) findViewById(R.id.content);
 
 		//content.setText("Getting data");
@@ -199,7 +199,8 @@ public class MainActivity extends Activity {
 				standardResources.getConfiguration());
 		config.locale = new Locale(lang);
 		Resources defaultResources = new Resources(assets, metrics, config);
-
+		fiveMin = new FiveMinRefresh(cb, content);
+		fiveMin.execute();
 	}
 
 	// is called from XML when button is clicked
