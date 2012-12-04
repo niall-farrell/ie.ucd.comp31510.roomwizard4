@@ -21,7 +21,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -90,6 +92,10 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		Calendar start_cal = iCalToTimeToday(start);
 		Calendar end_cal = iCalToTimeToday(end);
 		Calendar now_cal = Calendar.getInstance(); 
+			
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);   
+		
+		String room = preferences.getString("room", "Room X");
 		
 		SimpleDateFormat timeFormat = new SimpleDateFormat("k:mm a");
 		
@@ -98,7 +104,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 			occupied = true;
 			display = summary + " \n" +
 					  timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +
-				      organizer + "\n";
+				      organizer + "\n" + "Room " + room;
 		}
 		
 

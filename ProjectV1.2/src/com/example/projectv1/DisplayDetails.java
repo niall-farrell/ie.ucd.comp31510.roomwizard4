@@ -7,7 +7,9 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.view.Menu;
 import android.view.View;
@@ -59,12 +61,14 @@ public class DisplayDetails extends Activity {
 			Calendar start_cal = iCalToTimeToday(start);
 			Calendar end_cal = iCalToTimeToday(end);
 			
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);   
+			String room = preferences.getString("room", "Room X");
 			
 			SimpleDateFormat timeFormat = new SimpleDateFormat("k:mm a");
 
 			display = summary + " \n" +
 					timeFormat.format(start_cal.getTime()) + " - " + timeFormat.format(end_cal.getTime()) + " \n" +							
-					org + "\n";
+					org + "\n" + "Room " + room;
 			content.setText(display);
 		}
 		else{
