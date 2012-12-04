@@ -62,7 +62,7 @@ public class DisplayDetails extends Activity {
 			Calendar end_cal = iCalToTimeToday(end);
 			
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);   
-			String room = preferences.getString("room", "Room X");
+			String room = preferences.getString("room", "B0.0X");
 			
 			SimpleDateFormat timeFormat = new SimpleDateFormat("k:mm a");
 

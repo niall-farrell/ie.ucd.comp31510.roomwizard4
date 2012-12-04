@@ -45,7 +45,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 		FiveMinRefresh.cb= inCb;
 		FiveMinRefresh.view = inView;
 		FiveMinRefresh.size=cb.size();
-		FiveMinRefresh.activity = act;
+		FiveMinRefresh.activity =act;
 	}
 	
 
@@ -98,7 +98,7 @@ class FiveMinRefresh extends AsyncTask <String, Void, String>
 			
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);   
 		
-		String room = preferences.getString("room", "Room X");
+		String room = preferences.getString("room", "B0.0X");
 		
 		SimpleDateFormat timeFormat = new SimpleDateFormat("k:mm a");
 		

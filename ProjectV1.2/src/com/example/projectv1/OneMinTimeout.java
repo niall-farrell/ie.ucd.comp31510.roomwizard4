@@ -1,5 +1,7 @@
 // This class was used as a timer. It has now been replaced with teh Timeout class.
-
+//
+// obsolete
+/*
 package com.example.projectv1;
 
 
@@ -40,4 +42,4 @@ class OneMinTimeout
 	}
 
 }	
-	
+*/	
