@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:keepScreenOn="true"
+    tools:context=".Menu" >
+	
+    <Button
+        android:id="@+id/book_room"
+        android:layout_width="450dp"
+        android:layout_height="450dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/add_booking"
+        android:onClick="buttonClick" />
+
+    <Button
+        android:id="@+id/preferences"
+        android:layout_width="450dp"
+        android:layout_height="450dp"     
+        android:layout_alignParentRight="true"   
+        android:layout_marginRight="50dp"       
+        android:layout_alignBaseline="@+id/book_room"
+        android:layout_alignBottom="@+id/book_room"
+        android:layout_alignRight="@+id/back_from_menu"
+        android:text="@string/change_prefs"
+        android:onClick="buttonClick" />
+
+    <Button
+        android:id="@+id/back_from_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="28dp"
+        android:layout_marginRight="22dp"
+        style="?android:attr/buttonStyleSmall"
+        android:text="@string/back"
+        android:onClick="buttonClick" />
+
+</RelativeLayout>
