@@ -72,9 +72,9 @@ public class MainActivity extends Activity {
 		 Typeface qs1=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.ttf");
 		 Typeface qs2=Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.ttf");
 
-		 menu.setTypeface(qs1);
-		 eng.setTypeface(qs1);
-		 ie.setTypeface(qs1);
+		 menu.setTypeface(qs2);
+		 eng.setTypeface(qs2);
+		 ie.setTypeface(qs2);
 		 status.setTypeface(qs2);
 		 clock.setTypeface(qs2);
 		 currentdate.setTypeface(qs2);
@@ -253,7 +253,7 @@ public class MainActivity extends Activity {
 		String calurl = preferences.getString("urliCalendar", "www.ucd.ie");
 		
 		try {
-			add = new URL(calurl);
+			add = new URL("http://www.chartspms.com/android/calendar.ics");
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

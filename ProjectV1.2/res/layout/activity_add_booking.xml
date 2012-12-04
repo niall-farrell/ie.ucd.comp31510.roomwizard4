@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/add_greeting"
+        android:layout_marginTop="10dp"
         android:textSize="18dp"
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true" />
@@ -20,9 +21,8 @@
             android:id="@+id/add_greeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:layout_alignParentRight="true"
-            android:layout_alignRight="@+id/add_url"
             android:layout_marginRight="10dp"
             android:layout_marginTop="81dp"
             android:textSize="18dp"     
@@ -32,9 +32,9 @@
             android:id="@+id/qrcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginBottom="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginLeft="10dp" />
 
         <Button
@@ -45,7 +45,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="28dp"
             android:layout_marginRight="22dp"
-            android:textSize="10dp"
             style="?android:attr/buttonStyleSmall"
             android:text="@string/back"
             android:onClick="buttonClick" />

@@ -36,27 +36,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="28dp"
         android:layout_marginRight="22dp"
-        android:textSize="10dp"
         style="?android:attr/buttonStyleSmall"
         android:text="@string/back"
         android:onClick="buttonClick" />
 
-<!--  
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_above="@+id/preferences"
-        android:layout_alignLeft="@+id/book_room"
-        android:src="@drawable/calendar" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/preferences"
-        android:layout_marginRight="22dp"
-        android:src="@drawable/locked" />
--->
 </RelativeLayout>

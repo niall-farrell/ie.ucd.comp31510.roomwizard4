@@ -5,7 +5,13 @@
      <Preference android:title="@string/Pressback"
                 android:key="backButtons"
                 android:summary="@string/PressBackScreen"/>
-
+     
+	<supports-screens android:resizeable="true"
+                  android:smallScreens="true"
+                  android:normalScreens="true"
+                  android:largeScreens="true"
+                  android:xlargeScreens="true"
+                  android:anyDensity="true" />
 	 
 	        <EditTextPreference
 	            android:key="room"
