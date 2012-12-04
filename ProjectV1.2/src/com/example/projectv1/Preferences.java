@@ -93,8 +93,9 @@ public boolean onOptionsItemSelected(MenuItem item) {
 		savedPass = prefs.getLong("savedPass", "default".hashCode());
 		
 		if (savedPass != submittedPass){			
-			Intent promptPass = new Intent("android.intent.action.PASS");
-			startActivity(promptPass);				
+			finish();
+			//Intent promptPass = new Intent("android.intent.action.PASS");
+			//startActivity(promptPass);				
 		} 
     } 
 }

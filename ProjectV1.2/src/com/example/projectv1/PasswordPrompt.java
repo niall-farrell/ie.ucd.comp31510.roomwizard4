@@ -87,8 +87,8 @@ public class PasswordPrompt extends Activity {		// prompt user to enter a passwo
 		case R.id.backFromPrompt:
 			
 			finish();
-			Intent openMenu = new Intent("com.project.MENU");
-			startActivity(openMenu);
+			//Intent openMenu = new Intent("com.project.MENU");
+			//startActivity(openMenu);
 			break;
 		}
 	}
