@@ -56,6 +56,7 @@ public class MainActivity extends Activity {
 	String language;
 	FiveMinRefresh fiveMin;
 	TextView content;
+	CBupdate updater;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +106,10 @@ public class MainActivity extends Activity {
 		fiveMin = new FiveMinRefresh(cb, content);
 		fiveMin.execute();
 
+		// start thread to keep pulling the latest iCal files
+		int refresh = Integer.valueOf(settings.getString("timeForRefresh", ""));
+		updater = new CBupdate(cb, refresh, this);
+		
 		// Timeline Listener.
 		final TimelineImageView timelineView = (TimelineImageView) findViewById(R.id.timeline);
 		timelineView.setTimes(cb);
