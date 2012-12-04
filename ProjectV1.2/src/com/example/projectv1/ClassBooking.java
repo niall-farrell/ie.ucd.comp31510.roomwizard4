@@ -26,7 +26,7 @@ public class ClassBooking {
 		return organizer;
 	}
 
-	public void setOrganizer(final String organizerl) {
+	public void setOrganizer(final String organizer) {
 		this.organizer = organizer;
 	}
 

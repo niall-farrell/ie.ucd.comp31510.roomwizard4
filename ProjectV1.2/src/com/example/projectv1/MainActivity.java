@@ -126,13 +126,13 @@ public class MainActivity extends Activity {
 					Map<String, Integer[]> draw_map = TimelineImageView
 							.createDrawMap(cb, width);
 
-					boolean occupied = false;
+				//	boolean occupied = false;
 					String class_id = "";
 					for (Map.Entry<String, Integer[]> entry : draw_map
 							.entrySet()) {
 						if (entry.getValue()[0] < positionX
 								&& entry.getValue()[1] > positionX) {
-							occupied = true;
+							//occupied = true;
 							class_id = entry.getKey();
 						}
 					}

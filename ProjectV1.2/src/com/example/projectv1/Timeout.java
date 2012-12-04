@@ -9,12 +9,10 @@ import android.app.Activity;
 public class Timeout extends Timer {
 	
 	private long delay = 1* 60 * 1000;  // 1 minute * 60 seconds * 1000 milliseconds
-	private Activity activity;
 	private TimeTask task;
 	
 	Timeout(Activity activity)
 	{
-		this.activity=activity;
 		task = new TimeTask(activity);
 	}
 	
