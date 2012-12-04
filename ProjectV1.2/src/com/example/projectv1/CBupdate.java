@@ -95,10 +95,10 @@ class CBupdate extends AsyncTask <String, Void, String>
 		URL add = null;
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);   
-		String calurl = preferences.getString("urliCalendar", "www.ucd.ie");
+		String calurl = preferences.getString("urliCalendar", "http://www.chartspms.com/android/calendar.ics");
 		
 		try {
-			add = new URL("http://www.chartspms.com/android/calendar.ics");
+			add = new URL(calurl);
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
