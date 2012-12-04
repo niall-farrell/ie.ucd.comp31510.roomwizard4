@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class PasswordPrompt extends Activity {		// prompt user to enter a password in order to access preferences activity
@@ -36,6 +37,10 @@ public class PasswordPrompt extends Activity {		// prompt user to enter a passwo
 		pass = (Button) findViewById(R.id.submitPass);
 		pass.setTypeface(qs1);
 		
+		EditText et = new EditText(this);
+		et = (EditText) findViewById(R.id.ETpassword);
+		et.setText("");
+		
 		if(isPasswordSet())
 		{
 			prompt.setText(getResources().getString(R.string.main_pass_prompt));
@@ -44,7 +49,16 @@ public class PasswordPrompt extends Activity {		// prompt user to enter a passwo
 			prompt.setText(getResources().getString(R.string.passwordNotSet));
 		}
 	}
-
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		EditText et = new EditText(this);
+		et = (EditText) findViewById(R.id.ETpassword);
+		et.setText("");
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
