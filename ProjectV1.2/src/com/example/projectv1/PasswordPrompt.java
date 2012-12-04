@@ -2,6 +2,7 @@ package com.example.projectv1;
 
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -113,11 +114,10 @@ public class PasswordPrompt extends Activity {		// prompt user to enter a passwo
 	{
 		boolean x=false; 
 		
-		SharedPreferences prefs = this.getSharedPreferences("com.example.projectv1", Context.MODE_PRIVATE);
-						
-		Long savedPass = prefs.getLong("savedPass", 0);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);   						
+		String savedPass = prefs.getString("password", "");
 		
-		if (savedPass!=0)
+		if (!savedPass.equals(""))
 		{
 			x=true;
 		}

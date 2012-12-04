@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -92,15 +93,14 @@ public boolean onOptionsItemSelected(MenuItem item) {
 			submittedPass = submitted.getLong("submitted_pass");								
 		}
 		
-		SharedPreferences prefs = this.getSharedPreferences("com.example.projectv1", Context.MODE_PRIVATE);
 		
-	//	prefs.edit().putLong("savedPass", "default".hashCode()).commit();						
-		savedPass = prefs.getLong("savedPass", "default".hashCode());
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);   						
+		savedPass = prefs.getString("password", "default").hashCode();
+		
 		
 		if (savedPass != submittedPass){			
 			finish();
-			//Intent promptPass = new Intent("android.intent.action.PASS");
-			//startActivity(promptPass);				
+			
 		} 
     } 
 }

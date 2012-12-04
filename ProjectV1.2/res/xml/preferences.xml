@@ -49,7 +49,7 @@
 	            android:summary="@string/EnterPasswordforpreferences"
 	            android:dialogTitle="@string/Passwordforpreferences"
 	            android:dialogMessage="@string/EnterPasswordforpreferences"   
-	            android:defaultValue="1234" />
+	            android:defaultValue="default" />
 	            
 	        <ListPreference
 	            android:key="startTime"
